@@ -16,6 +16,9 @@ public class TipoIngrediente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="tipo_ingrediente_id_seq", sequenceName="tipo_ingrediente_id_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="tipo_ingrediente_id_seq")
+	@Column(updatable=false)
 	private Integer id;
 
 	private String nome;
