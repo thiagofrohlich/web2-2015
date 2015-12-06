@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 6, 2015 6:23:32 PM by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="Ingrediente" table="ingrediente" schema="public" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tipoIngrediente" class="TipoIngrediente" fetch="select">
+            <column name="tipo_ingrediente_id" not-null="true" />
+        </many-to-one>
+        <property name="nome" type="string">
+            <column name="nome" not-null="true" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="descricao" not-null="true" />
+        </property>
+        <set name="refeicaosForSobremesaId" table="refeicao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sobremesa_id" not-null="true" />
+            </key>
+            <one-to-many class="Refeicao" />
+        </set>
+        <set name="refeicaosForAcompanhamentoId" table="refeicao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="acompanhamento_id" not-null="true" />
+            </key>
+            <one-to-many class="Refeicao" />
+        </set>
+        <set name="refeicaosForSaladaId" table="refeicao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="salada_id" not-null="true" />
+            </key>
+            <one-to-many class="Refeicao" />
+        </set>
+        <set name="refeicaosForCarneId" table="refeicao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="carne_id" not-null="true" />
+            </key>
+            <one-to-many class="Refeicao" />
+        </set>
+        <set name="refeicaosForFeijaoId" table="refeicao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="feijao_id" not-null="true" />
+            </key>
+            <one-to-many class="Refeicao" />
+        </set>
+        <set name="refeicaosForArrozId" table="refeicao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="arroz_id" not-null="true" />
+            </key>
+            <one-to-many class="Refeicao" />
+        </set>
+    </class>
+</hibernate-mapping>

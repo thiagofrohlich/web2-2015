@@ -45,14 +45,6 @@ public class TipoIngredienteDaoTest {
 		assertEquals(savedTipoIngrediente.get(0).getNome(), tipoIngrediente.getNome());
 	}
 	
-	private TipoIngrediente findById(Integer id) {
-		dao.openCurrentSession();
-		TipoIngrediente result = dao.findById(id);
-		dao.closeCurrentSession();
-		list.add(result);
-		return result;
-	}
-	
 	private List<TipoIngrediente> findByNome(String nome) {
 		dao.openCurrentSession();
 		list.addAll(dao.findByNome(nome));

@@ -11,11 +11,13 @@
    <property name="hibernate.connection.password">postgre</property>
    <property name="hibernate.hbm2ddl.auto">update</property>
    <property name="show_sql">true</property>
+   <property name="format_sql">true</property>
    <property name="hibernate.current_session_context_class">thread</property>
-   <mapping class="br.ufpr.cruel.domain.TipoIngrediente"/>
-   <mapping class="br.ufpr.cruel.domain.Ingrediente"/>
-   <mapping class="br.ufpr.cruel.domain.Refeicao"/>
-   <mapping class="br.ufpr.cruel.domain.Cardapio"/>
+   <!-- <mapping package="br.ufpr.cruel.domain"/> -->
+   <mapping class="br.ufpr.cruel.domain.TipoIngrediente" resource="TipoIngrediente.hbm.xml"/>
+   <mapping class="br.ufpr.cruel.domain.Ingrediente" resource="Ingrediente.hbm.xml"/>
+   <mapping class="br.ufpr.cruel.domain.Refeicao" resource="Refeicao.hbm.xml"/>
+   <mapping class="br.ufpr.cruel.domain.Cardapio" resource="Cardapio.hbm.xml"/>
    
 </session-factory>
 </hibernate-configuration>

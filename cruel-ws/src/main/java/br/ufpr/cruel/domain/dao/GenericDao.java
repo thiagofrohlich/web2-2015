@@ -9,6 +9,11 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+import br.ufpr.cruel.domain.Cardapio;
+import br.ufpr.cruel.domain.Ingrediente;
+import br.ufpr.cruel.domain.Refeicao;
+import br.ufpr.cruel.domain.TipoIngrediente;
+
 public abstract class GenericDao<T, ID extends Serializable> implements Dao<T, ID> {
 	private final Class<T> clazz;
 	private Session currentSession;
@@ -37,11 +42,18 @@ public abstract class GenericDao<T, ID extends Serializable> implements Dao<T, I
 	    }
 	     
 	    private static SessionFactory getSessionFactory() {
-	        Configuration configuration = new Configuration().configure();
-	        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
+	    	Configuration configuration = new Configuration()
+	    			.addPackage("br.ufpr.cruel.domain")
+	    			.addAnnotatedClass(TipoIngrediente.class)
+	    			.addAnnotatedClass(Ingrediente.class)
+	    			.addAnnotatedClass(Refeicao.class)
+	    			.addAnnotatedClass(Cardapio.class);
+	    	configuration.configure("/hibernate.cfg.xml");
+	    	
+	    	StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
 	                .applySettings(configuration.getProperties());
-	        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-	        return sessionFactory;
+	        return configuration.buildSessionFactory(builder.build());
+	    	
 	    }
 	 
 	    public Session getCurrentSession() {
@@ -80,7 +92,6 @@ public abstract class GenericDao<T, ID extends Serializable> implements Dao<T, I
 		 * @see br.ufpr.cruel.domain.dao.Dao#findById(ID)
 		 */
 	    @Override
-		@SuppressWarnings("unchecked")
 		public T findById(ID id) {
 	        T object = (T) getCurrentSession().get(clazz, id);
 	        return object;
@@ -100,7 +111,7 @@ public abstract class GenericDao<T, ID extends Serializable> implements Dao<T, I
 	    @Override
 		@SuppressWarnings("unchecked")
 	    public List<T> findAll() {
-	        List<T> objects = (List<T>) getCurrentSession().createQuery("from "+ clazz.getSimpleName()).list();
+	        List<T> objects = (List<T>) getCurrentSession().createQuery("from "+ clazz.getName()).list();
 	        return objects;
 	    }
 	 

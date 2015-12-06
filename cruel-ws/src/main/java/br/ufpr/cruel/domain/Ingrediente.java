@@ -1,8 +1,15 @@
 package br.ufpr.cruel.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 /**
@@ -10,6 +17,7 @@ import java.util.List;
  * 
  */
 @Entity
+@Table
 @NamedQuery(name="Ingrediente.findAll", query="SELECT i FROM Ingrediente i")
 public class Ingrediente implements Serializable {
 	private static final long serialVersionUID = 1L;
