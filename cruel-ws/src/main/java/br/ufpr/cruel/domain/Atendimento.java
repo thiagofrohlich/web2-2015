@@ -16,6 +16,9 @@ public class Atendimento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="atendimento_id_seq", sequenceName="atendimento_id_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="atendimento_id_seq")
+	@Column(updatable=false)
 	private Integer id;
 
 	@Temporal(TemporalType.DATE)
