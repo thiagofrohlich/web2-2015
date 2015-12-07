@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>CRUEL - Manter Atendentes</title>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <title>CRUEL - Registrar Cliente</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
 </head>
 
 <body>
-		
+
 		<!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -129,7 +129,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Atendentes</h1>
+                    <h1 class="page-header">Clientes</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -138,7 +138,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Atendentes Cadastrados
+                            Registros
                             <button id="cadastrar-button" type="button" class="btn btn-outline btn-default">Adicionar</button>
                         </div>
                         <!-- /.panel-heading -->
@@ -159,108 +159,30 @@
 					                </form>
 					            </div>
 				            </div>
-            
+                        
                             <div class="dataTable_wrapper">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-examples">
                                     <thead>
                                         <tr>
-                                            <th>Email</th>
-                                            <th>Nome</th>
-                                            <th>CPF</th>
-                                            <th>Endereço</th>
-                                            <th>Telefone</th>
+                                            <th>Categoria</th>
+                                            <th>Data</th>
+                                            <th>Valor</th>
                                             <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="odd gradeX">
-                                            <td>joao.silva@email.com</td>
-                                            <td>João da Silva</td>
-                                            <td>123.456.789-10</td>
-                                            <td>Lugar nenhum</td>
-                                            <td>(41) 3123-4567</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td>joao.silva@email.com</td>
-                                            <td>João da Silva</td>
-                                            <td>123.456.789-10</td>
-                                            <td>Lugar nenhum</td>
-                                            <td>(41) 3123-4567</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td>joao.silva@email.com</td>
-                                            <td>João da Silva</td>
-                                            <td>123.456.789-10</td>
-                                            <td>Lugar nenhum</td>
-                                            <td>(41) 3123-4567</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td>joao.silva@email.com</td>
-                                            <td>João da Silva</td>
-                                            <td>123.456.789-10</td>
-                                            <td>Lugar nenhum</td>
-                                            <td>(41) 3123-4567</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td>joao.silva@email.com</td>
-                                            <td>João da Silva</td>
-                                            <td>123.456.789-10</td>
-                                            <td>Lugar nenhum</td>
-                                            <td>(41) 3123-4567</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td>joao.silva@email.com</td>
-                                            <td>João da Silva</td>
-                                            <td>123.456.789-10</td>
-                                            <td>Lugar nenhum</td>
-                                            <td>(41) 3123-4567</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td>joao.silva@email.com</td>
-                                            <td>João da Silva</td>
-                                            <td>123.456.789-10</td>
-                                            <td>Lugar nenhum</td>
-                                            <td>(41) 3123-4567</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td>joao.silva@email.com</td>
-                                            <td>João da Silva</td>
-                                            <td>123.456.789-10</td>
-                                            <td>Lugar nenhum</td>
-                                            <td>(41) 3123-4567</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
+                                        <c:forEach var="lstAtendimento" items="${listaAtendimento}">
+	                                        <tr class="odd gradeX">
+	                                            <td>${lstAtendimento.categoria}</td>
+	                                            <td>${lstAtendimento.data}</td>
+	                                            <td>${lstAtendimento.valor}</td>
+	                                            <td class="center">
+	                                            	<input type="hidden" id="id" value="1" />
+	                                            	<button type="button" class="btn btn-info btn-circle edit-atendimento"><i class="fa fa-edit"></i></button>
+	                                            	<button type="button" class="btn btn-danger btn-circle delete-atendimento"><i class="fa fa-times"></i></button>
+	                                            </td>
+	                                        </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -277,39 +199,28 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Cadastrar Novo Atendente
+                            Cadastrar Novo Atendimento
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form role="form">
                                         <div class="form-group">
-                                            <label class="control-label" for="nome">Nome</label>
-                                            <input id="nome" name="nome" class="form-control no-blank" />
+                                            <label class="control-label" for="categoria">Categoria</label>
+                                            <input id="categoria" name="categoria" class="form-control no-blank" />
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="cpf">CPF</label>
-                                            <input id="cpf" name="cpf" class="form-control cpf no-blank only-numeric">
-                                            <p class="help-block">Apenas números. Ex.: 12345678910</p>
+                                            <label class="control-label" for="data">Data</label>
+                                            <input id="data" name="data" class="form-control no-blank" disabled="disabled" value="01/01/2015 00:00:00" />
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="endereco">Endere&ccedilo</label>
-                                            <input id="endereco" name="endereco" class="form-control no-blank">
-                                            <p class="help-block">Endereço completo.</p>
+                                            <label class="control-label" for="valor">Valor</label>
+                                            <select class="form-control" id="valor" >
+												<c:forEach var="lstValor" items="${valor}">
+													<option>${lstValor}</option>
+												</c:forEach>
+											</select>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="telefone">Telefone</label>
-                                            <input id="telefone" name="telefone" class="form-control no-blank only-numeric">
-                                            <p class="help-block">Apenas números. Ex.: 33123456</p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="email">Email</label>
-                                            <input id="email" name="email" class="form-control no-blank email">
-                                        </div>
-		                                <div class="form-group">
-		                                	<label class="control-label" for="senha">Senha</label>
-		                                    <input id="senha" name="senha" class="form-control no-blank" name="password" type="password" value="">
-		                                </div>
                                         <button type="submit" class="btn btn-default">Salvar</button>
                                         <button id="reset-button" type="reset" class="btn btn-default">Cancelar</button>
                                     </form>
@@ -344,7 +255,7 @@
     </script>
 
     <script src="../js/validations.js"></script>
-    <script src="../js/form-pessoa.js"></script>
+    <script src="../js/form-atendimento.js"></script>
 </body>
 
 </html>

@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>CRUEL - Manter Gerentes</title>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <title>CRUEL - Manter Nutricionistas</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
 </head>
 
 <body>
-		
+
 		<!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -125,11 +125,11 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-		
+
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Gerentes</h1>
+                    <h1 class="page-header">Nutricionistas</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -138,7 +138,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Gerentes Cadastrados
+                            Nutricionistas Cadastrados
                             <button id="cadastrar-button" type="button" class="btn btn-outline btn-default">Adicionar</button>
                         </div>
                         <!-- /.panel-heading -->
@@ -168,16 +168,32 @@
                                             <th>Email</th>
                                             <th>Nome</th>
                                             <th>CPF</th>
+                                            <th>CRN</th>
                                             <th>Endereço</th>
                                             <th>Telefone</th>
                                             <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <c:forEach var="lstPessoa" items="${listaPessoa}">
+   		                                     <tr class="odd gradeX">
+	                                            <td>${lstPessoa.email}</td>
+	                                            <td>${lstPessoa.nome}</td>
+	                                            <td>${lstPessoa.cpf}</td>
+	                                            <td>${lstPessoa.crn}</td>
+	                                            <td>${lstPessoa.endereco}</td>
+	                                            <td>${lstPessoa.telefone}</td>
+	                                            <td class="center">
+	                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa"><i class="fa fa-edit"></i></button>
+	                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa"><i class="fa fa-times"></i></button>
+	                                            </td>
+	                                        </tr>
+                                       	</c:forEach>
                                         <tr class="odd gradeX">
                                             <td>joao.silva@email.com</td>
                                             <td>João da Silva</td>
                                             <td>123.456.789-10</td>
+                                            <td>11111</td>
                                             <td>Lugar nenhum</td>
                                             <td>(41) 3123-4567</td>
                                             <td class="center">
@@ -189,6 +205,7 @@
                                             <td>joao.silva@email.com</td>
                                             <td>João da Silva</td>
                                             <td>123.456.789-10</td>
+                                            <td>11111</td>
                                             <td>Lugar nenhum</td>
                                             <td>(41) 3123-4567</td>
                                             <td class="center">
@@ -200,6 +217,7 @@
                                             <td>joao.silva@email.com</td>
                                             <td>João da Silva</td>
                                             <td>123.456.789-10</td>
+                                            <td>11111</td>
                                             <td>Lugar nenhum</td>
                                             <td>(41) 3123-4567</td>
                                             <td class="center">
@@ -211,6 +229,7 @@
                                             <td>joao.silva@email.com</td>
                                             <td>João da Silva</td>
                                             <td>123.456.789-10</td>
+                                            <td>11111</td>
                                             <td>Lugar nenhum</td>
                                             <td>(41) 3123-4567</td>
                                             <td class="center">
@@ -222,6 +241,7 @@
                                             <td>joao.silva@email.com</td>
                                             <td>João da Silva</td>
                                             <td>123.456.789-10</td>
+                                            <td>11111</td>
                                             <td>Lugar nenhum</td>
                                             <td>(41) 3123-4567</td>
                                             <td class="center">
@@ -233,6 +253,7 @@
                                             <td>joao.silva@email.com</td>
                                             <td>João da Silva</td>
                                             <td>123.456.789-10</td>
+                                            <td>11111</td>
                                             <td>Lugar nenhum</td>
                                             <td>(41) 3123-4567</td>
                                             <td class="center">
@@ -244,17 +265,7 @@
                                             <td>joao.silva@email.com</td>
                                             <td>João da Silva</td>
                                             <td>123.456.789-10</td>
-                                            <td>Lugar nenhum</td>
-                                            <td>(41) 3123-4567</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td>joao.silva@email.com</td>
-                                            <td>João da Silva</td>
-                                            <td>123.456.789-10</td>
+                                            <td>11111</td>
                                             <td>Lugar nenhum</td>
                                             <td>(41) 3123-4567</td>
                                             <td class="center">
@@ -291,6 +302,11 @@
                                         <div class="form-group">
                                             <label class="control-label" for="cpf">CPF</label>
                                             <input id="cpf" name="cpf" class="form-control cpf no-blank only-numeric">
+                                            <p class="help-block">Apenas números. Ex.: 12345678910</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="crn">CRN</label>
+                                            <input id="crn" name="crn" class="form-control crn no-blank only-numeric">
                                             <p class="help-block">Apenas números. Ex.: 12345678910</p>
                                         </div>
                                         <div class="form-group">
@@ -341,6 +357,10 @@
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {
+    	edit = getUrlParameter('edit');
+    	if(edit != null && edit == 'true') {
+    		populateNutricionista();
+    	}
     });
     </script>
 

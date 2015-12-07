@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>CRUEL - Tipo de Cliente</title>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <title>CRUEL - Tipo Ingrediente</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,8 +38,8 @@
 </head>
 
 <body>
-	
-		<!-- Navigation -->
+		
+		 <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -125,11 +125,11 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-	
+
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tipos de Cliente</h1>
+                    <h1 class="page-header">Atendentes</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -138,46 +138,28 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Tipos de Cliente cadastrados
+                            Tipo de ingrediente Cadastrados
                             <button id="cadastrar-button" type="button" class="btn btn-outline btn-default">Adicionar</button>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                        
-				            <div class="row">
-				                <div class="col-lg-6">
-					                <form role="form">
-					                    <div class="input-group custom-search-form">
-					                        <input name="q" type="text" class="form-control" placeholder="Pesquise..."/>
-					                        <!-- <input type="text" class="form-control" placeholder="Search..."> -->
-					                        <span class="input-group-btn">
-				                                <button class="btn btn-default" type="button">
-				                                    <i class="fa fa-search"></i>
-				                                </button>
-				                            </span>
-					                    </div>
-					                </form>
-					            </div>
-				            </div>
-                        
                             <div class="dataTable_wrapper">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-examples">
                                     <thead>
                                         <tr>
-                                            <th>Código</th>
-                                            <th>Descrição</th>
-                                            <th>Ações</th>
+                                            <th>Nome</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="odd gradeX">
-                                            <td>1</td>
-                                            <td>Tipo1</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-tipo"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-tipo"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
+                                        <c:forEach var="lstTipo" items="${tipoIngrediente}">
+	                                        <tr class="odd gradeX">
+	                                            <td>${lstTipo.nome}</td>
+	                                            <td class="center">
+	                                            	<button type="button" class="btn btn-info btn-circle edit-tip"><i class="fa fa-edit"></i></button>
+	                                            	<button type="button" class="btn btn-danger btn-circle  delete-tip"><i class="fa fa-times"></i></button>
+	                                            </td>
+	                                        </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -190,25 +172,21 @@
                 <!-- /.col-lg-12 -->
             </div>
                         
-            <div class="row hide" id="form-pessoa">
+            <div class="row hide" id="form-tip">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Cadastrar Novo Tipo de Cliente
+                            Cadastrar Novo Tipo de Ingrediente
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form role="form">
                                         <div class="form-group">
-                                            <label class="control-label" for="codigo">Código</label>
-                                            <input id="codigo" name="codigo" class="form-control no-blank" disabled="disabled" value="2"/>
+                                            <label class="control-label" for="nome">Nome</label>
+                                            <input id="nome" name="nome" class="form-control no-blank" />
                                         </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="descricao">Descrição</label>
-                                            <input id="descricao" name="descricao" class="form-control no-blank">
-                                            <p class="help-block">Apenas números. Ex.: 12345678910</p>
-                                        </div>
+                                        
                                         <button type="submit" class="btn btn-default">Salvar</button>
                                         <button id="reset-button" type="reset" class="btn btn-default">Cancelar</button>
                                     </form>
@@ -239,11 +217,14 @@
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: true
+        });
     });
     </script>
 
     <script src="../js/validations.js"></script>
-    <script src="../js/form-tipo.js"></script>
+    <script src="../js/form-tip.js"></script>
 </body>
 
 </html>
