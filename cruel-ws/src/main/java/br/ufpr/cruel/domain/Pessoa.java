@@ -14,6 +14,9 @@ public class Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="pessoa_id_seq", sequenceName="pessoa_id_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="pessoa_id_seq")
+	@Column(updatable=false)
 	private Integer id;
 
 	private String cpf;
