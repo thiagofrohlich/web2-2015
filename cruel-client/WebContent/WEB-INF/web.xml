@@ -17,4 +17,12 @@
     <servlet-name>ingrediente</servlet-name>
     <url-pattern>/pages/Ingrediente</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>tipoIngrediente</servlet-name>
+    <servlet-class>br.ufpr.cruel.servlet.TipoIngrediente</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>tipoIngrediente</servlet-name>
+    <url-pattern>/pages/TipoIngrediente</url-pattern>
+  </servlet-mapping>
 </web-app>

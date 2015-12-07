@@ -126,78 +126,79 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Atendentes</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            
-            <div class="row" id="table">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Tipo de ingrediente Cadastrados
-                            <button id="cadastrar-button" type="button" class="btn btn-outline btn-default">Adicionar</button>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-examples">
-                                    <thead>
-                                        <tr>
-                                            <th>Nome</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="lstTipo" items="${tipoIngrediente}">
-	                                        <tr class="odd gradeX">
-	                                            <td>${lstTipo.nome}</td>
-	                                            <td class="center">
-	                                            	<button type="button" class="btn btn-info btn-circle edit-tip"><i class="fa fa-edit"></i></button>
-	                                            	<button type="button" class="btn btn-danger btn-circle  delete-tip"><i class="fa fa-times"></i></button>
-	                                            </td>
+		<form action="TipoIngrediente">
+	        <div id="page-wrapper">
+	            <div class="row">
+	                <div class="col-lg-12">
+	                    <h1 class="page-header">Atendentes</h1>
+	                </div>
+	                <!-- /.col-lg-12 -->
+	            </div>
+	            
+	            <div class="row" id="table">
+	                <div class="col-lg-12">
+	                    <div class="panel panel-default">
+	                        <div class="panel-heading">
+	                            Tipo de ingrediente Cadastrados
+	                            <button id="cadastrar-button" type="button" class="btn btn-outline btn-default">Adicionar</button>
+	                        </div>
+	                        <!-- /.panel-heading -->
+	                        <div class="panel-body">
+	                            <div class="dataTable_wrapper">
+	                                <table class="table table-striped table-bordered table-hover" id="dataTables-examples">
+	                                    <thead>
+	                                        <tr>
+	                                            <th>Nome</th>
 	                                        </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-                        
-            <div class="row hide" id="form-tip">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Cadastrar Novo Tipo de Ingrediente
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <form role="form">
-                                        <div class="form-group">
-                                            <label class="control-label" for="nome">Nome</label>
-                                            <input id="nome" name="nome" class="form-control no-blank" />
-                                        </div>
-                                        
-                                        <button type="submit" class="btn btn-default">Salvar</button>
-                                        <button id="reset-button" type="reset" class="btn btn-default">Cancelar</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+	                                    </thead>
+	                                    <tbody>
+	                                        <c:forEach var="lstTipo" items="${listatipoIngrediente}">
+		                                        <tr class="odd gradeX">
+		                                            <td>${lstTipo.nome}</td>
+		                                            <td class="center">
+		                                            	<button type="button" class="btn btn-info btn-circle edit-tip"><i class="fa fa-edit"></i></button>
+		                                            	<button type="button" class="btn btn-danger btn-circle  delete-tip"><i class="fa fa-times"></i></button>
+		                                            </td>
+		                                        </tr>
+	                                        </c:forEach>
+	                                    </tbody>
+	                                </table>
+	                            </div>
+	                            <!-- /.table-responsive -->
+	                        </div>
+	                        <!-- /.panel-body -->
+	                    </div>
+	                    <!-- /.panel -->
+	                </div>
+	                <!-- /.col-lg-12 -->
+	            </div>
+	                        
+	            <div class="row hide" id="form-tip">
+	                <div class="col-lg-12">
+	                    <div class="panel panel-default">
+	                        <div class="panel-heading">
+	                            Cadastrar Novo Tipo de Ingrediente
+	                        </div>
+	                        <div class="panel-body">
+	                            <div class="row">
+	                                <div class="col-lg-6">
+	                                    <form role="form">
+	                                        <div class="form-group">
+	                                            <label class="control-label" for="nome">Nome</label>
+	                                            <input id="nome" name="nome" class="form-control no-blank" />
+	                                        </div>
+	                                        
+	                                        <button type="submit" class="btn btn-default">Salvar</button>
+	                                        <button id="reset-button" type="reset" class="btn btn-default">Cancelar</button>
+	                                    </form>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+		</form>
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
