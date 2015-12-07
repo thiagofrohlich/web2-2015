@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>CRUEL - Manter Ingredientes</title>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <title>CRUEL - Tipo de Cliente</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
 </head>
 
 <body>
-		
+	
 		<!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -125,11 +125,11 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-		
+	
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Ingredientes</h1>
+                    <h1 class="page-header">Tipos de Cliente</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -138,50 +138,50 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Ingredientes Cadastrados
+                            Tipos de Cliente cadastrados
                             <button id="cadastrar-button" type="button" class="btn btn-outline btn-default">Adicionar</button>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                        
+				            <div class="row">
+				                <div class="col-lg-6">
+					                <form role="form">
+					                    <div class="input-group custom-search-form">
+					                        <input name="q" type="text" class="form-control" placeholder="Pesquise..."/>
+					                        <!-- <input type="text" class="form-control" placeholder="Search..."> -->
+					                        <span class="input-group-btn">
+				                                <button class="btn btn-default" type="button">
+				                                    <i class="fa fa-search"></i>
+				                                </button>
+				                            </span>
+					                    </div>
+					                </form>
+					            </div>
+				            </div>
+                        
                             <div class="dataTable_wrapper">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-examples">
                                     <thead>
                                         <tr>
-                                            <th>Tipo</th>
-                                            <th>Nome</th>
+                                            <th>Código</th>
                                             <th>Descrição</th>
-                                            
+                                            <th>valor Refei��o</th>
+                                            <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="odd gradeX">
-                                            <td>Arroz</td>
-                                            <td>Branco</td>
-                                            <td>Arroz branco cozido</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-ing"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-ing"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td>Feijão</td>
-                                            <td>Preto</td>
-                                            <td>Feijão preto cozido</td>
-											<td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-ing"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-ing"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td>Carne</td>
-                                            <td>Frango</td>
-                                            <td>Frango grelhado</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-ing"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-ing"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
-                                        
+                                    	<c:forEach var="lstCliente" items="${listaCliente}">
+	                                        <tr class="odd gradeX">
+	                                            <td>${lstCliente.codigo}</td>
+	                                            <td>${lstCliente.descricao}</td>
+	                                            <td>${lstCliente.valorRefeicao}</td>
+	                                            <td class="center">
+	                                            	<button type="button" class="btn btn-info btn-circle edit-tipo"><i class="fa fa-edit"></i></button>
+	                                            	<button type="button" class="btn btn-danger btn-circle delete-tipo"><i class="fa fa-times"></i></button>
+	                                            </td>
+	                                        </tr>
+                                    	</c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -194,37 +194,26 @@
                 <!-- /.col-lg-12 -->
             </div>
                         
-            <div class="row hide" id="form-ing">
+            <div class="row hide" id="form-pessoa">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Cadastrar Novo Ingrediente
+                            Cadastrar Novo Tipo de Cliente
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form role="form">
                                         <div class="form-group">
-                                            <label class="control-label" for="tipo">Tipo</label>
-                                            <select class="form-control" id="tipo">
-												<option>Arroz</option>
-												<option>Feijão</option>
-												<option>Carne</option>
-												<option>Salada</option>
-												<option>Acompanhamento</option>
-												<option>Sobremesa</option>
-											</select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="nome">Nome</label>
-                                            <input id="nome" class="form-control no-blank">
-                                            
+                                            <label class="control-label" for="codigo">Código</label>
+                                            <input id="codigo" name="codigo" class="form-control no-blank" disabled="disabled" value="2"/>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="descricao">Descrição</label>
-                                            <textarea class="form-control no-blank" rows="3" id="descricao" ></textarea>
+                                            <input id="descricao" name="descricao" class="form-control no-blank">
+                                            <p class="help-block">Apenas números. Ex.: 12345678910</p>
                                         </div>
-										<button type="submit" class="btn btn-default">Salvar</button>
+                                        <button type="submit" class="btn btn-default">Salvar</button>
                                         <button id="reset-button" type="reset" class="btn btn-default">Cancelar</button>
                                     </form>
                                 </div>
@@ -251,18 +240,14 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
-        });
     });
     </script>
 
     <script src="../js/validations.js"></script>
-    <script src="../js/form-ing.js"></script>
+    <script src="../js/form-tipo.js"></script>
 </body>
 
 </html>

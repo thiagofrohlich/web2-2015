@@ -3,13 +3,15 @@
 
 <head>
 
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    
 
-    <title>CRUEL - Relatórios</title>
+    <title>CRUEL - CARDAPIOS</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -36,7 +38,7 @@
 
     <div id="wrapper">
 
-        <!-- Navigation -->
+         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -122,70 +124,112 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
+		
         <div id="page-wrapper">
             
             <!-- /.row -->
             <div class="row">
 			<div class="col-lg-12">
-                    <h3 class="page-header">Relatórios</h3>
+                    <h3 class="page-header">Cardapio - 04/11/2015</h3>
                 </div>
                 <div class="col-lg-6">
-				<h3 class="page-header">Mensal</h3>
-						 <div class="col-lg-4">
-						<div class="form-group" >
-								<label>Mês</label>
-								<select class="form-control">
-									<option>Janeiro</option>
-									<option>Fevereiro</option>
-									<option>Março</option>
-									<option>Abril</option>
-									<option>Maio</option>
-									<option>Junho</option>
-									<option>Julho</option>
-									<option>Agosto</option>
-									<option>Setembro</option>
-									<option selected="true">Outubro</option>
-									<option>Novembro</option>
-									<option>Dezembro</option>
-								</select>
-							</div>
-							<div class="form-group" >
-								<label>Ano</label>
-								<select class="form-control">
-									<option>2012</option>
-									<option>2013</option>
-									<option>2014</option>
-									<option selected="true">2015</option>
-									<option>2016</option>
-									<option>2017</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<button type="button" class="btn btn-default">Gerar</button>
-							</div>
+				<h3 class="page-header">Almoço</h3>
+					
+						<div class="form-group">
+							<label>Arroz</label>
+							<select class="form-control">
+								<c:forEach var="arroz" items="$(arroz)">
+									<option>${arroz}</option>
+								</c:forEach>
+							</select>
 						</div>
+						<div class="form-group">
+							<label>Feijão</label>
+							<select class="form-control">
+								<option>Branco</option>
+								<option>Preto</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Salada</label>
+							<select class="form-control">
+								<option>Alface</option>
+								<option>Tomate</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Carne</label>
+							<select class="form-control">
+								<option>Carne moída</option>
+								<option>Bife</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Acompanhamento</label>
+							<select class="form-control">
+								<option>Macarrão</option>
+								<option>Ovo frito</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Sobremesa</label>
+							<select class="form-control">
+								<option>Bolo</option>
+								<option>Gelatina</option>
+							</select>
+						</div>
+					
 				</div>
 				<div class="col-lg-6">
-				<h3 class="page-header">Anual</h3>
-						<div class="col-lg-4">
-						<div class="form-group" >
-								<label>Ano</label>
-								<select class="form-control">
-									<option>2012</option>
-									<option>2013</option>
-									<option>2014</option>
-									<option selected="true">2015</option>
-									<option>2016</option>
-									<option>2017</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<button type="button" class="btn btn-default">Gerar</button>
-							</div>
+				<h3 class="page-header">Janta</h3>
+					
+						<div class="form-group">
+							<label>Arroz</label>
+							<select class="form-control">
+								<option>Branco</option>
+								<option>Risoto</option>
+							</select>
 						</div>
+						<div class="form-group">
+							<label>Feijão</label>
+							<select class="form-control">
+								<option>Branco</option>
+								<option>Preto</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Salada</label>
+							<select class="form-control">
+								<option>Alface</option>
+								<option>Tomate</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Carne</label>
+							<select class="form-control">
+								<option>Carne moída</option>
+								<option>Bife</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Acompanhamento</label>
+							<select class="form-control">
+								<option>Macarrão</option>
+								<option>Ovo frito</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Sobremesa</label>
+							<select class="form-control">
+								<option>Bolo</option>
+								<option>Gelatina</option>
+							</select>
+						</div>
+					
 				</div>
-				
+				<div class="form-group">
+					<button type="button" class="btn btn-default">Salvar</button>
+				</div>
             </div>
             <!-- /.row -->
         </div>
