@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <title>CRUEL - Cardápio Mensal</title>
 
     <!-- Bootstrap Core CSS -->
@@ -187,14 +187,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>01/10/2015</td>
-                                            <td>Sim</td>
-                                            <td>
-												<button type="button" class="btn btn-info btn-circle "><i class="fa fa-info"></i></button>
-                                            	<a href="cadastroCardapio.html" class="btn btn-info btn-circle"><i class="fa fa-edit"></i></a>
-											</td>
-                                        </tr>
+                                        <c:forEach var="lstCardapio" items="${listaCardapio}">
+	                                        <tr>
+	                                            <td>${lstCardapio.data}</td>
+	                                            <td>${lstCardapio.cardapio}</td>
+	                                            <td>
+													<button type="button" class="btn btn-info btn-circle "><i class="fa fa-info"></i></button>
+	                                            	<a href="cadastroCardapio.jsp" class="btn btn-info btn-circle"><i class="fa fa-edit"></i></a>
+												</td>
+	                                        </tr>
+                                        </c:forEach>
                                         <tr>
                                             <td>02/10/2015</td>
                                             <td>não</td>

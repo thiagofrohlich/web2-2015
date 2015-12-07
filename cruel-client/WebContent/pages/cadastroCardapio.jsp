@@ -138,7 +138,7 @@
 						<div class="form-group">
 							<label>Arroz</label>
 							<select class="form-control">
-								<c:forEach var="arroz" items="$(arroz)">
+								<c:forEach var="arroz" items="${listaArroz}">
 									<option>${arroz}</option>
 								</c:forEach>
 							</select>
@@ -146,36 +146,41 @@
 						<div class="form-group">
 							<label>Feijão</label>
 							<select class="form-control">
-								<option>Branco</option>
-								<option>Preto</option>
+								<c:forEach var="feijao" items="${listaFeijao}">
+									<option>${feijao}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
 							<label>Salada</label>
 							<select class="form-control">
-								<option>Alface</option>
-								<option>Tomate</option>
+								<c:forEach var="salada" items="${listaSalada}">
+									<option>${salada}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
 							<label>Carne</label>
 							<select class="form-control">
-								<option>Carne moída</option>
-								<option>Bife</option>
+								<c:forEach var="carne" items="${listaCarne}">
+									<option>${carne}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
 							<label>Acompanhamento</label>
 							<select class="form-control">
-								<option>Macarrão</option>
-								<option>Ovo frito</option>
+								<c:forEach var="acompanhamento" items="${listaAcomp}">
+									<option>${acompanhamento}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
 							<label>Sobremesa</label>
 							<select class="form-control">
-								<option>Bolo</option>
-								<option>Gelatina</option>
+								<c:forEach var="sobremesa" items="${listaSobremesa}">
+									<option>${sobremesa}</option>
+								</c:forEach>
 							</select>
 						</div>
 					

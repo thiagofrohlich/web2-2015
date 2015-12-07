@@ -157,13 +157,13 @@
 											<td><h4>Almoço</h4></td>
 										</tr>
 										<tr>
-											<td>Arroz<br>Feijão<br>Carne<br>Salada<br>Acompanhamento</td>
+											<td>${domingo.almoco.arroz}<br>${domingo.almoco.feijao}<br>${domingo.almoco.carne}<br>${domingo.almoco.salada}<br>${domingo.almoco.acompanhamento}</td>
 										</tr>
 										<tr>
 											<td><h4>Janta</h4></td>
 										</tr>
 										<tr>
-											<td>Arroz<br>Feijão<br>Carne<br>Salada<br>Acompanhamento</td>
+											<td>${domingo.janta.arroz}<br>${domingo.janta.feijao}<br>${domingo.janta.carne}<br>${domingo.janta.salada}<br>${domingo.janta.acompanhamento}</td>
 										</tr>
 									</table>
 								</td>
@@ -173,13 +173,13 @@
 											<td><h4>Almoço</h4></td>
 										</tr>
 										<tr>
-											<td>Arroz<br>Feijão<br>Carne<br>Salada<br>Acompanhamento</td>
+											<td>${segunda.almoco.arroz}<br>${segunda.almoco.feijao}<br>${segunda.almoco.carne}<br>${segunda.almoco.salada}<br>${segunda.almoco.acompanhamento}</td>
 										</tr>
 										<tr>
 											<td><h4>Janta</h4></td>
 										</tr>
 										<tr>
-											<td>Arroz<br>Feijão<br>Carne<br>Salada<br>Acompanhamento</td>
+											<td>${segunda.janta.arroz}<br>${segunda.janta.feijao}<br>${segunda.janta.carne}<br>${segunda.janta.salada}<br>${segunda.janta.acompanhamento}</td>
 										</tr>
 									</table>
 								</td>
@@ -189,13 +189,13 @@
 											<td><h4>Almoço</h4></td>
 										</tr>
 										<tr>
-											<td>Arroz<br>Feijão<br>Carne<br>Salada<br>Acompanhamento</td>
+											<td>${terca.almoco.arroz}<br>${terca.almoco.feijao}<br>${terca.almoco.carne}<br>${terca.almoco.salada}<br>${terca.almoco.acompanhamento}</td>
 										</tr>
 										<tr>
 											<td><h4>Janta</h4></td>
 										</tr>
 										<tr>
-											<td>Arroz<br>Feijão<br>Carne<br>Salada<br>Acompanhamento</td>
+											<td>${terca.janta.arroz}<br>${terca.janta.feijao}<br>${terca.janta.carne}<br>${terca.janta.salada}<br>${terca.janta.acompanhamento}</td>
 										</tr>
 									</table>
 								</td>
@@ -205,13 +205,13 @@
 											<td><h4>Almoço</h4></td>
 										</tr>
 										<tr>
-											<td>Arroz<br>Feijão<br>Carne<br>Salada<br>Acompanhamento</td>
+											<td>${quarta.almoco.arroz}<br>${quarta.almoco.feijao}<br>${quarta.almoco.carne}<br>${quarta.almoco.salada}<br>${quarta.almoco.acompanhamento}</td>
 										</tr>
 										<tr>
 											<td><h4>Janta</h4></td>
 										</tr>
 										<tr>
-											<td>Arroz<br>Feijão<br>Carne<br>Salada<br>Acompanhamento</td>
+											<td>${quarta.janta.arroz}<br>${quarta.janta.feijao}<br>${quarta.janta.carne}<br>${quarta.janta.salada}<br>${quarta.janta.acompanhamento}</td>
 										</tr>
 									</table>
 								</td>
@@ -221,13 +221,13 @@
 											<td><h4>Almoço</h4></td>
 										</tr>
 										<tr>
-											<td>Arroz<br>Feijão<br>Carne<br>Salada<br>Acompanhamento</td>
+											<td>${quinta.almoco.arroz}<br>${quinta.almoco.feijao}<br>${quinta.almoco.carne}<br>${quinta.almoco.salada}<br>${quinta.almoco.acompanhamento}</td>
 										</tr>
 										<tr>
 											<td><h4>Janta</h4></td>
 										</tr>
 										<tr>
-											<td>Arroz<br>Feijão<br>Carne<br>Salada<br>Acompanhamento</td>
+											<td>${quinta.janta.arroz}<br>${quinta.janta.feijao}<br>${quinta.janta.carne}<br>${quinta.janta.salada}<br>${quinta.janta.acompanhamento}</td>
 										</tr>
 									</table>
 								</td>
@@ -237,13 +237,13 @@
 											<td><h4>Almoço</h4></td>
 										</tr>
 										<tr>
-											<td>Arroz<br>Feijão<br>Carne<br>Salada<br>Acompanhamento</td>
+											<td>${sexta.almoco.arroz}<br>${sexta.almoco.feijao}<br>${sexta.almoco.carne}<br>${sexta.almoco.salada}<br>${sexta.almoco.acompanhamento}</td>
 										</tr>
 										<tr>
 											<td><h4>Janta</h4></td>
 										</tr>
 										<tr>
-											<td>Arroz<br>Feijão<br>Carne<br>Salada<br>Acompanhamento</td>
+											<td>${sexta.janta.arroz}<br>${sexta.janta.feijao}<br>${sexta.janta.carne}<br>${sexta.janta.salada}<br>${sexta.janta.acompanhamento}</td>
 										</tr>
 									</table>
 								</td>
@@ -253,17 +253,16 @@
 											<td><h4>Almoço</h4></td>
 										</tr>
 										<tr>
-											<td>Arroz<br>Feijão<br>Carne<br>Salada<br>Acompanhamento</td>
+											<td>${sabado.almoco.arroz}<br>${sabado.almoco.feijao}<br>${sabado.almoco.carne}<br>${sabado.almoco.salada}<br>${sabado.almoco.acompanhamento}</td>
 										</tr>
 										<tr>
 											<td><h4>Janta</h4></td>
 										</tr>
 										<tr>
-											<td>Arroz<br>Feijão<br>Carne<br>Salada<br>Acompanhamento</td>
+											<td>${sabado.janta.arroz}<br>${sabado.janta.feijao}<br>${sabado.janta.carne}<br>${sabado.janta.salada}<br>${sabado.janta.acompanhamento}</td>
 										</tr>
 									</table>
 								</td>
-								
 							<tr>
 						<tbody>
                                       

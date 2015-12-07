@@ -9,7 +9,6 @@
     <servlet-name>relatorio</servlet-name>
     <url-pattern>/pages/Relatorio</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ingrediente</servlet-name>
     <servlet-class>br.ufpr.cruel.servlet.Ingrediente</servlet-class>
