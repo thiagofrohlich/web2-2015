@@ -1,8 +1,16 @@
 package br.ufpr.cruel.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 
 
 /**
@@ -15,18 +23,13 @@ public class Refeicao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="refeicao_id_seq", sequenceName="refeicao_id_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="refeicao_id_seq")
+	@Column(updatable=false)
 	private Integer id;
 
 	@Column(name="tipo_refeicao")
 	private String tipoRefeicao;
-
-	//bi-directional many-to-one association to Cardapio
-	@OneToMany(mappedBy="refeicao1")
-	private List<Cardapio> cardapios1;
-
-	//bi-directional many-to-one association to Cardapio
-	@OneToMany(mappedBy="refeicao2")
-	private List<Cardapio> cardapios2;
 
 	//bi-directional many-to-one association to Ingrediente
 	@ManyToOne
@@ -75,50 +78,6 @@ public class Refeicao implements Serializable {
 
 	public void setTipoRefeicao(String tipoRefeicao) {
 		this.tipoRefeicao = tipoRefeicao;
-	}
-
-	public List<Cardapio> getCardapios1() {
-		return this.cardapios1;
-	}
-
-	public void setCardapios1(List<Cardapio> cardapios1) {
-		this.cardapios1 = cardapios1;
-	}
-
-	public Cardapio addCardapios1(Cardapio cardapios1) {
-		getCardapios1().add(cardapios1);
-		cardapios1.setRefeicao1(this);
-
-		return cardapios1;
-	}
-
-	public Cardapio removeCardapios1(Cardapio cardapios1) {
-		getCardapios1().remove(cardapios1);
-		cardapios1.setRefeicao1(null);
-
-		return cardapios1;
-	}
-
-	public List<Cardapio> getCardapios2() {
-		return this.cardapios2;
-	}
-
-	public void setCardapios2(List<Cardapio> cardapios2) {
-		this.cardapios2 = cardapios2;
-	}
-
-	public Cardapio addCardapios2(Cardapio cardapios2) {
-		getCardapios2().add(cardapios2);
-		cardapios2.setRefeicao2(this);
-
-		return cardapios2;
-	}
-
-	public Cardapio removeCardapios2(Cardapio cardapios2) {
-		getCardapios2().remove(cardapios2);
-		cardapios2.setRefeicao2(null);
-
-		return cardapios2;
 	}
 
 	public Ingrediente getIngrediente1() {

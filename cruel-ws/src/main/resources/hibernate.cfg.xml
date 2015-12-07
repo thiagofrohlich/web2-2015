@@ -15,6 +15,7 @@
    <property name="hibernate.current_session_context_class">thread</property>
    <!-- <mapping package="br.ufpr.cruel.domain"/> -->
    <mapping class="br.ufpr.cruel.domain.TipoIngrediente" resource="TipoIngrediente.hbm.xml"/>
+   <mapping class="br.ufpr.cruel.domain.TipoCliente" resource="TipoCliente.hbm.xml"/>
    <mapping class="br.ufpr.cruel.domain.Ingrediente" resource="Ingrediente.hbm.xml"/>
    <mapping class="br.ufpr.cruel.domain.Refeicao" resource="Refeicao.hbm.xml"/>
    <mapping class="br.ufpr.cruel.domain.Cardapio" resource="Cardapio.hbm.xml"/>
