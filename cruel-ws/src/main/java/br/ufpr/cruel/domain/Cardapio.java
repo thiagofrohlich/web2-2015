@@ -15,6 +15,9 @@ public class Cardapio implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="cardapio_id_seq", sequenceName="cardapio_id_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="cardapio_id_seq")
+	@Column(updatable=false)
 	private Integer id;
 
 	@Temporal(TemporalType.DATE)
