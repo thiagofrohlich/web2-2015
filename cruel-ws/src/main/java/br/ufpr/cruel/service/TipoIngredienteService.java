@@ -13,6 +13,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import br.ufpr.cruel.domain.dao.TipoIngredienteDao;
@@ -21,7 +22,7 @@ import br.ufpr.cruel.model.TipoIngrediente;
 @Path("/TipoIngrediente")
 public class TipoIngredienteService {
 
-	private TipoIngredienteDao dao;
+	private TipoIngredienteDao dao = new TipoIngredienteDao();
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -45,7 +46,7 @@ public class TipoIngredienteService {
 	@Path("/nome/{nome}")
 	public List<TipoIngrediente> findByNome(@PathParam("nome") String nome) {
 		dao.openCurrentSession();
-		List<br.ufpr.cruel.domain.TipoIngrediente> result = dao.findByNome(nome);
+		List<br.ufpr.cruel.domain.TipoIngrediente> result = dao.findByNome("%"+nome+"%");
 		dao.closeCurrentSession();
 		
 		return transformToModel( result );
@@ -54,7 +55,7 @@ public class TipoIngredienteService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void create(@FormParam("tipoIngrediente") TipoIngrediente model) {
+	public void create(@Context TipoIngrediente model) {
 		persistDb( transformToDomain(model) );
 	}
 	
