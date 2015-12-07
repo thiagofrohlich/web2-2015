@@ -12,6 +12,7 @@ import org.hibernate.cfg.Configuration;
 import br.ufpr.cruel.domain.Cardapio;
 import br.ufpr.cruel.domain.Ingrediente;
 import br.ufpr.cruel.domain.Refeicao;
+import br.ufpr.cruel.domain.TipoCliente;
 import br.ufpr.cruel.domain.TipoIngrediente;
 
 public abstract class GenericDao<T, ID extends Serializable> implements Dao<T, ID> {
@@ -45,6 +46,7 @@ public abstract class GenericDao<T, ID extends Serializable> implements Dao<T, I
 	    	Configuration configuration = new Configuration()
 	    			.addPackage("br.ufpr.cruel.domain")
 	    			.addAnnotatedClass(TipoIngrediente.class)
+	    			.addAnnotatedClass(TipoCliente.class)
 	    			.addAnnotatedClass(Ingrediente.class)
 	    			.addAnnotatedClass(Refeicao.class)
 	    			.addAnnotatedClass(Cardapio.class);

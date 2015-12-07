@@ -1,9 +1,16 @@
 package br.ufpr.cruel.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 
 /**
@@ -17,16 +24,15 @@ public class TipoCliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="tipo_cliente_id_seq", sequenceName="tipo_cliente_id_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="tipo_cliente_id_seq")
+	@Column(updatable=false)
 	private Integer id;
 
 	private String descricao;
 
 	@Column(name="valor_refeicao")
 	private BigDecimal valorRefeicao;
-
-	//bi-directional many-to-one association to Atendimento
-	@OneToMany(mappedBy="tipoCliente")
-	private List<Atendimento> atendimentos;
 
 	public TipoCliente() {
 	}
@@ -53,28 +59,6 @@ public class TipoCliente implements Serializable {
 
 	public void setValorRefeicao(BigDecimal valorRefeicao) {
 		this.valorRefeicao = valorRefeicao;
-	}
-
-	public List<Atendimento> getAtendimentos() {
-		return this.atendimentos;
-	}
-
-	public void setAtendimentos(List<Atendimento> atendimentos) {
-		this.atendimentos = atendimentos;
-	}
-
-	public Atendimento addAtendimento(Atendimento atendimento) {
-		getAtendimentos().add(atendimento);
-		atendimento.setTipoCliente(this);
-
-		return atendimento;
-	}
-
-	public Atendimento removeAtendimento(Atendimento atendimento) {
-		getAtendimentos().remove(atendimento);
-		atendimento.setTipoCliente(null);
-
-		return atendimento;
 	}
 
 }
