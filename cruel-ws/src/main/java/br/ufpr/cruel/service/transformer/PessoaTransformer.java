@@ -32,15 +32,18 @@ public class PessoaTransformer implements Transformer<Pessoa, br.ufpr.cruel.doma
 	 */
 	@Override
 	public Pessoa transformToModel(br.ufpr.cruel.domain.Pessoa pessoa) {
-		Pessoa model = new Pessoa();
-		model.setId(pessoa.getId());
-		model.setCrn(pessoa.getCrn());
-		model.setEmail(pessoa.getEmail());
-		model.setEndereco(pessoa.getEndereco());
-		model.setNome(pessoa.getNome());
-		model.setSenha(pessoa.getSenha());
-		model.setTelefone(pessoa.getTelefone());
-		model.setTipoPessoa(pessoa.getTipoPessoa());
+		Pessoa model = null;
+		if(pessoa != null) {
+			model = new Pessoa();
+			model.setId(pessoa.getId());
+			model.setCrn(pessoa.getCrn());
+			model.setEmail(pessoa.getEmail());
+			model.setEndereco(pessoa.getEndereco());
+			model.setNome(pessoa.getNome());
+			model.setSenha(pessoa.getSenha());
+			model.setTelefone(pessoa.getTelefone());
+			model.setTipoPessoa(pessoa.getTipoPessoa());
+		}
 		return model;
 	}
 	
