@@ -204,7 +204,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form role="form" action="Atendimento?action=salva" method="post">
                                         <div class="form-group">
                                             <label class="control-label" for="categoria">Categoria</label>
                                             <input id="categoria" name="categoria" class="form-control no-blank" />

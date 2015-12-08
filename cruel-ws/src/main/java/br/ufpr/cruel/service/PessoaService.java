@@ -112,7 +112,8 @@ public class PessoaService {
 	
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void delete(@QueryParam("id") Integer id) {
+	@Path("/{id}")
+	public void delete(@PathParam("id") Integer id) {
 		deleteDb(id);
 	}
 	

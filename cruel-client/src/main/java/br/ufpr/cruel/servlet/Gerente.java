@@ -40,27 +40,74 @@ public class Gerente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Pessoa gerente = new Pessoa();
-		gerente.setNome(request.getParameter("nome"));
-		gerente.setEmail(request.getParameter("email"));
-		gerente.setTelefone(request.getParameter("telefone"));
-		gerente.setSenha(request.getParameter("senha"));
-		gerente.setEndereco(request.getParameter("endereco"));
-		gerente.setTipoPessoa("gerente");
+		String action = request.getParameter("action");
 		
-		Client client = ClientBuilder.newClient();
-		client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
-                .request(MediaType.APPLICATION_JSON)
-                .post(Entity.json(gerente), br.ufpr.cruel.model.TipoIngrediente.class);
+		if(action.equals("salva")){
+			Pessoa gerente = new Pessoa();
+			gerente.setNome(request.getParameter("nome"));
+			gerente.setEmail(request.getParameter("email"));
+			gerente.setTelefone(request.getParameter("telefone"));
+			gerente.setSenha(request.getParameter("senha"));
+			gerente.setEndereco(request.getParameter("endereco"));
+			gerente.setTipoPessoa("gerente");
+			
+			Client client = ClientBuilder.newClient();
+			client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+			.request(MediaType.APPLICATION_JSON)
+			.post(Entity.json(gerente), br.ufpr.cruel.model.TipoIngrediente.class);
+			
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+					.request(MediaType.APPLICATION_JSON)
+					.get(ArrayList.class);
+			request.setAttribute("listaTipoIngrediente", listaPessoa);
+			
+			RequestDispatcher rd = getServletContext().
+					getRequestDispatcher("/pages/manterTipoIngrediente.jsp");
+			rd.forward(request, response);
+		}
 		
-		listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
-                .request(MediaType.APPLICATION_JSON)
-                .get(ArrayList.class);
-		request.setAttribute("listaTipoIngrediente", listaPessoa);
+		if(action.equals("edit")){
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			Client client = ClientBuilder.newClient();
+			Pessoa pessoa = client.target("http://localhost:8080/cruel-ws/Pessoa/"+id)
+			.request(MediaType.APPLICATION_JSON)
+			.get(Pessoa.class);
+			
+			request.setAttribute("pessoa", pessoa);
+			
+			RequestDispatcher rd = getServletContext().
+					getRequestDispatcher("/pages/manterGerentes.jsp");
+			rd.forward(request, response);
+		}
 		
-		RequestDispatcher rd = getServletContext().
-				getRequestDispatcher("/pages/manterTipoIngrediente.jsp");
-				rd.forward(request, response);
+		if(action.equals("delete")){
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			Client client = ClientBuilder.newClient();
+			client.target("http://localhost:8080/cruel-ws/Pessoa/"+id)
+			.request(MediaType.APPLICATION_JSON)
+			.delete(Pessoa.class);
+			
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+					.request(MediaType.APPLICATION_JSON)
+					.get(ArrayList.class);
+			request.setAttribute("listaTipoIngrediente", listaPessoa);
+			
+			RequestDispatcher rd = getServletContext().
+					getRequestDispatcher("/pages/manterGerentes.jsp");
+			rd.forward(request, response);
+		}
+		
+		if(action.equals("inicio")){
+			Client client = ClientBuilder.newClient();
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+					.request(MediaType.APPLICATION_JSON)
+					.get(ArrayList.class);
+			request.setAttribute("listaTipoIngrediente", listaPessoa);
+			
+			RequestDispatcher rd = getServletContext().
+					getRequestDispatcher("/pages/manterGerentes.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 }

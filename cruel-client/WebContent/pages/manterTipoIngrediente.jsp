@@ -154,6 +154,7 @@
 	                                    <tbody>
 	                                        <c:forEach var="lstTipo" items="${listaTipoIngrediente}">
 		                                        <tr class="odd gradeX">
+		                                        	<td class="hide">${lstTipo.id}</td>
 		                                            <td>${lstTipo.nome}</td>
 		                                            <td class="center">
 		                                            	<button type="button" class="btn btn-info btn-circle edit-tip"><i class="fa fa-edit"></i></button>
@@ -181,10 +182,10 @@
 	                        <div class="panel-body">
 	                            <div class="row">
 	                                <div class="col-lg-6">
-	                                    <form role="form" action="TipoIngrediente">
+	                                    <form role="form" action="TipoIngrediente?action=salva" method="post">
 	                                        <div class="form-group">
 	                                            <label class="control-label" for="nome">Nome</label>
-	                                            <input id="nome" name="nome" class="form-control no-blank" />
+	                                            <input id="nome" name="nome" class="form-control no-blank" value="${ing.nome}"/>
 	                                        </div>
 	                                        
 	                                        <button type="submit" class="btn btn-default">Salvar</button>

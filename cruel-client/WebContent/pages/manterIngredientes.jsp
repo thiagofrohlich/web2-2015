@@ -188,7 +188,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form role="form" action="Ingrediente?action=salva" method="post">
                                         <div class="form-group">
                                             <label class="control-label" for="tipo">Tipo</label>
                                             <select class="form-control" id="tipo" >

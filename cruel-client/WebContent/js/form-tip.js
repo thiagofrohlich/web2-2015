@@ -10,7 +10,7 @@ $(document).ready(function() {
 	});
 	
 	$('.edit-tip').click(function() {
-		parameters = "?edit=true&id=";
+		parameters = "http://localhost:8080/cruel-client/pages/TipoIngrediente?action=edit&id=";
 		
 		tr = $(this).parent().parent(); //5
 		td = $(tr).children().eq(0);
@@ -20,9 +20,8 @@ $(document).ready(function() {
 		if(url.indexOf("?") >= 0) {
 			url = url.substring(0, url.indexOf("?"))
 		}
-		
-		window.location.replace(url+parameters);
-		
+		showFormTip();
+		window.location.replace(parameters);
 	});
 	
 
@@ -30,25 +29,25 @@ $(document).ready(function() {
 	edit = getUrlParameter('edit');
 	if(edit != null && edit == 'true') {
 		showFormTip();
-		populateFormTip();
 	}
 	
 	$('.delete-tip').click(function() {
-		parameters = '?delete=true&id=';
+		parameters = 'http://localhost:8080/cruel-client/pages/TipoIngrediente?action=delete&id=';
 		
-		nome = $(this).parent().parent().children().eq(0).text();
+		id = $(this).parent().parent().children().eq(0).text();
+		nome = $(this).parent().parent().children().eq(1).text();
 		
 		
 		del = confirm('Quer mesmo deletar '+ nome +  ' ?');
 		
 		if(del) {
-			parameters += nome;
+			parameters += id;
 			url = window.location.href;
 			if(url.indexOf('?') >= 0) {
 				url = url.substring(0, url.indexOf('?'));
 			}
 			
-			window.location.replace(url+parameters);
+			window.location.replace(parameters);
 		}
 		
 	});

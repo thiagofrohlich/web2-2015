@@ -189,90 +189,7 @@
 	                                            </td>
 	                                        </tr>
                                        	</c:forEach>
-                                        <tr class="odd gradeX">
-                                            <td>joao.silva@email.com</td>
-                                            <td>João da Silva</td>
-                                            <td>123.456.789-10</td>
-                                            <td>11111</td>
-                                            <td>Lugar nenhum</td>
-                                            <td>(41) 3123-4567</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td>joao.silva@email.com</td>
-                                            <td>João da Silva</td>
-                                            <td>123.456.789-10</td>
-                                            <td>11111</td>
-                                            <td>Lugar nenhum</td>
-                                            <td>(41) 3123-4567</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td>joao.silva@email.com</td>
-                                            <td>João da Silva</td>
-                                            <td>123.456.789-10</td>
-                                            <td>11111</td>
-                                            <td>Lugar nenhum</td>
-                                            <td>(41) 3123-4567</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td>joao.silva@email.com</td>
-                                            <td>João da Silva</td>
-                                            <td>123.456.789-10</td>
-                                            <td>11111</td>
-                                            <td>Lugar nenhum</td>
-                                            <td>(41) 3123-4567</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td>joao.silva@email.com</td>
-                                            <td>João da Silva</td>
-                                            <td>123.456.789-10</td>
-                                            <td>11111</td>
-                                            <td>Lugar nenhum</td>
-                                            <td>(41) 3123-4567</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td>joao.silva@email.com</td>
-                                            <td>João da Silva</td>
-                                            <td>123.456.789-10</td>
-                                            <td>11111</td>
-                                            <td>Lugar nenhum</td>
-                                            <td>(41) 3123-4567</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td>joao.silva@email.com</td>
-                                            <td>João da Silva</td>
-                                            <td>123.456.789-10</td>
-                                            <td>11111</td>
-                                            <td>Lugar nenhum</td>
-                                            <td>(41) 3123-4567</td>
-                                            <td class="center">
-                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa"><i class="fa fa-edit"></i></button>
-                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa"><i class="fa fa-times"></i></button>
-                                            </td>
-                                        </tr>
+                                       
                                     </tbody>
                                 </table>
                             </div>
@@ -294,7 +211,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form role="form" action="Nutricionista?action=salva" method="post">
                                         <div class="form-group">
                                             <label class="control-label" for="nome">Nome</label>
                                             <input id="nome" name="nome" class="form-control no-blank" />

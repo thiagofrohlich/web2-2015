@@ -48,7 +48,6 @@ $(document).ready(function() {
 	edit = getUrlParameter('edit');
 	if(edit != null && edit == 'true') {
 		showFormPessoa();
-		populateFormPessoa();
 	}
 	
 });

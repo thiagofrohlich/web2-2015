@@ -25,4 +25,44 @@
     <servlet-name>tipoIngrediente</servlet-name>
     <url-pattern>/pages/TipoIngrediente</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>atendente</servlet-name>
+    <servlet-class>br.ufpr.cruel.servlet.Atendente</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>atendente</servlet-name>
+    <url-pattern>/pages/Atendente</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>gerente</servlet-name>
+    <servlet-class>br.ufpr.cruel.servlet.Gerente</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>gerente</servlet-name>
+    <url-pattern>/pages/Gerente</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>nutricionista</servlet-name>
+    <servlet-class>br.ufpr.cruel.servlet.Nutricionista</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>nutricionista</servlet-name>
+    <url-pattern>/pages/Nutricionista</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>cardapio</servlet-name>
+    <servlet-class>br.ufpr.cruel.servlet.Cardapio</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>cardapio</servlet-name>
+    <url-pattern>/pages/Cardapio</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>atendimento</servlet-name>
+    <servlet-class>br.ufpr.cruel.servlet.Atendimento</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>atendimento</servlet-name>
+    <url-pattern>/pages/Atendimento</url-pattern>
+  </servlet-mapping>
 </web-app>

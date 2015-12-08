@@ -39,28 +39,76 @@ public class Nutricionista extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Pessoa nutricionista = new Pessoa();
-		nutricionista.setNome(request.getParameter("nome"));
-		nutricionista.setEmail(request.getParameter("email"));
-		nutricionista.setTelefone(request.getParameter("telefone"));
-		nutricionista.setSenha(request.getParameter("senha"));
-		nutricionista.setEndereco(request.getParameter("endereco"));
-		nutricionista.setCrn(request.getParameter("crn"));
-		nutricionista.setTipoPessoa("nutricionista");
+		String action = request.getParameter("action");
 		
-		Client client = ClientBuilder.newClient();
-		client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
-                .request(MediaType.APPLICATION_JSON)
-                .post(Entity.json(nutricionista), br.ufpr.cruel.model.TipoIngrediente.class);
+		if(action.equals("salva")){
+			Pessoa nutricionista = new Pessoa();
+			nutricionista.setNome(request.getParameter("nome"));
+			nutricionista.setEmail(request.getParameter("email"));
+			nutricionista.setTelefone(request.getParameter("telefone"));
+			nutricionista.setSenha(request.getParameter("senha"));
+			nutricionista.setEndereco(request.getParameter("endereco"));
+			nutricionista.setCrn(request.getParameter("crn"));
+			nutricionista.setTipoPessoa("nutricionista");
+			
+			Client client = ClientBuilder.newClient();
+			client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+			.request(MediaType.APPLICATION_JSON)
+			.post(Entity.json(nutricionista), br.ufpr.cruel.model.TipoIngrediente.class);
+			
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+					.request(MediaType.APPLICATION_JSON)
+					.get(ArrayList.class);
+			request.setAttribute("listaTipoIngrediente", listaPessoa);
+			
+			RequestDispatcher rd = getServletContext().
+					getRequestDispatcher("/pages/manterTipoIngrediente.jsp");
+			rd.forward(request, response);
+		}
 		
-		listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
-                .request(MediaType.APPLICATION_JSON)
-                .get(ArrayList.class);
-		request.setAttribute("listaTipoIngrediente", listaPessoa);
+		if(action.equals("edit")){
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			Client client = ClientBuilder.newClient();
+			Pessoa pessoa = client.target("http://localhost:8080/cruel-ws/Pessoa/"+id)
+			.request(MediaType.APPLICATION_JSON)
+			.get(Pessoa.class);
+			
+			request.setAttribute("pessoa", pessoa);
+			
+			RequestDispatcher rd = getServletContext().
+					getRequestDispatcher("/pages/manterNutricionistas.jsp");
+			rd.forward(request, response);
+		}
 		
-		RequestDispatcher rd = getServletContext().
-				getRequestDispatcher("/pages/manterTipoIngrediente.jsp");
-				rd.forward(request, response);
+		if(action.equals("delete")){
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			Client client = ClientBuilder.newClient();
+			client.target("http://localhost:8080/cruel-ws/Pessoa/"+id)
+			.request(MediaType.APPLICATION_JSON)
+			.delete(Pessoa.class);
+			
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+					.request(MediaType.APPLICATION_JSON)
+					.get(ArrayList.class);
+			request.setAttribute("listaTipoIngrediente", listaPessoa);
+			
+			RequestDispatcher rd = getServletContext().
+					getRequestDispatcher("/pages/manterNutricionistas.jsp");
+			rd.forward(request, response);
+		}
+		
+		if(action.equals("inicio")){
+			Client client = ClientBuilder.newClient();
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+					.request(MediaType.APPLICATION_JSON)
+					.get(ArrayList.class);
+			request.setAttribute("listaTipoIngrediente", listaPessoa);
+			
+			RequestDispatcher rd = getServletContext().
+					getRequestDispatcher("/pages/manterNutricionistas.jsp");
+			rd.forward(request, response);
+		}
+		
 	}
 
 }
