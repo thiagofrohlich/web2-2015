@@ -73,4 +73,12 @@
     <servlet-name>tipoCliente</servlet-name>
     <url-pattern>/pages/TipoCliente</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>login</servlet-name>
+    <servlet-class>br.ufpr.cruel.servlet.Login</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>login</servlet-name>
+    <url-pattern>/pages/Login</url-pattern>
+  </servlet-mapping>
 </web-app>

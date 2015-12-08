@@ -40,8 +40,8 @@ public class PessoaDao extends GenericDao<Pessoa, Integer> {
 	
 	public Pessoa findByEmailAndSenha(String email, String senha) {
 		String query = "select p from Pessoa p "
-				+ "where p.email = :email"
-				+ "where p.senha = :senha";
+				+ "where p.email = :email "
+				+ "and p.senha = :senha";
 		return (Pessoa) getCurrentSession().createQuery(query)
 				.setParameter("email", email)
 				.setParameter("senha", senha).uniqueResult();
