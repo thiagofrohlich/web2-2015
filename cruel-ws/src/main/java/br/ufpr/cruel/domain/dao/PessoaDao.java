@@ -25,7 +25,7 @@ public class PessoaDao extends GenericDao<Pessoa, Integer> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Pessoa> findByCrm(String crn) {
+	public List<Pessoa> findByCrn(String crn) {
 		String query = "select p from Pessoa p "
 				+ "where p.crn like :crn";
 		return (List<Pessoa>) getCurrentSession().createQuery(query).setParameter("crn", crn).list();
