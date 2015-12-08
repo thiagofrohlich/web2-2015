@@ -51,11 +51,11 @@ public class TipoIngrediente extends HttpServlet {
 		
 		listatipoIngrediente =  (List<br.ufpr.cruel.model.TipoIngrediente>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
                 .request(MediaType.APPLICATION_JSON)
-                .get(br.ufpr.cruel.model.TipoIngrediente.class);
+                .get(ArrayList.class);
 		request.setAttribute("listaTipoIngrediente", listatipoIngrediente);
 		
 		RequestDispatcher rd = getServletContext().
-				getRequestDispatcher("/tipoIngrediente.jsp");
+				getRequestDispatcher("/pages/manterTipoIngrediente.jsp");
 				rd.forward(request, response);
 	}
 
