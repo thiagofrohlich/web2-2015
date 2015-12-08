@@ -51,6 +51,17 @@ public class IngredienteService {
 		
 		return transformer.transformToModel( result );
 	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/descricao/{descricao}")
+	public List<Ingrediente> findByDescricao(@PathParam("descricao") String descricao) {
+		dao.openCurrentSession();
+		List<br.ufpr.cruel.domain.Ingrediente> result = dao.findByDescricao("%"+descricao+"%");
+		dao.closeCurrentSession();
+		
+		return transformer.transformToModel( result );
+	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
