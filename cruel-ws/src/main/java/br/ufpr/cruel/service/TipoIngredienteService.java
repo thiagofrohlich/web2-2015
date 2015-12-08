@@ -55,7 +55,7 @@ public class TipoIngredienteService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void create(@Context TipoIngrediente model) {
+	public void create( TipoIngrediente model) {
 		persistDb( transformToDomain(model) );
 	}
 	

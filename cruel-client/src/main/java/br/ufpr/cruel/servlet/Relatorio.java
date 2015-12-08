@@ -57,17 +57,7 @@ public class Relatorio extends HttpServlet {
 				}
 			}
 			catch(ClassNotFoundException e) {
-				// erro de driver
-				response.setContentType("text/html;charset=UTF-8");
-				PrintWriter out = response.getWriter();
-				out.println("<html><head>");
-				out.println("<title>Servlet GeradorRelatorio</title>");
-				out.println("</head><body>");
-				out.println("<h1>Erro de Driver (" + e.getMessage() +
-						") no Servlet GeradorRelatorio at " +
-						request.getContextPath () + "</h1>");
-				out.println("</body></html>");
-				out.flush();
+				e.printStackTrace();
 			}
 			catch(SQLException e) {
 				// erro de SQL

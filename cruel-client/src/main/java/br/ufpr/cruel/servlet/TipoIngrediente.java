@@ -2,6 +2,7 @@ package br.ufpr.cruel.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -33,27 +34,29 @@ public class TipoIngrediente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		br.ufpr.cruel.model.TipoIngrediente tipo = new br.ufpr.cruel.model.TipoIngrediente();
-		tipo.setNome(request.getParameter("name"));
-		
-		Client client = ClientBuilder.newClient();
-		tipo = client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
-                .request(MediaType.APPLICATION_JSON)
-                .post(Entity.json(tipo), br.ufpr.cruel.model.TipoIngrediente.class);
-		
-		listatipoIngrediente.add(tipo);
-		request.setAttribute("listaTipoIngrediente", listatipoIngrediente);
-		
-		RequestDispatcher rd = getServletContext().
-				getRequestDispatcher("/tipoIngrediente.jsp");
-				rd.forward(request, response);
+		doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		br.ufpr.cruel.model.TipoIngrediente tipo = new br.ufpr.cruel.model.TipoIngrediente();
+		tipo.setNome(request.getParameter("nome"));
+		
+		Client client = ClientBuilder.newClient();
+		client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.json(tipo), br.ufpr.cruel.model.TipoIngrediente.class);
+		
+		listatipoIngrediente =  (List<br.ufpr.cruel.model.TipoIngrediente>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+                .request(MediaType.APPLICATION_JSON)
+                .get(br.ufpr.cruel.model.TipoIngrediente.class);
+		request.setAttribute("listaTipoIngrediente", listatipoIngrediente);
+		
+		RequestDispatcher rd = getServletContext().
+				getRequestDispatcher("/tipoIngrediente.jsp");
+				rd.forward(request, response);
 	}
 
 	public List<br.ufpr.cruel.model.TipoIngrediente> getListatipoIngrediente() {
