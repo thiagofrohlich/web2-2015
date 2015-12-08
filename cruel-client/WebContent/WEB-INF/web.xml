@@ -73,4 +73,12 @@
     <servlet-name>login</servlet-name>
     <url-pattern>/pages/Login</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>logout</servlet-name>
+    <servlet-class>br.ufpr.cruel.servlet.Logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>logout</servlet-name>
+    <url-pattern>/pages/Logout</url-pattern>
+  </servlet-mapping>
 </web-app>
