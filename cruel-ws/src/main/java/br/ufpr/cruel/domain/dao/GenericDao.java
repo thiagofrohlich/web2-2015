@@ -131,4 +131,10 @@ public abstract class GenericDao<T, ID extends Serializable> implements Dao<T, I
 	            delete(entity);
 	        }
 	    }
+	    
+	    @Override
+	    @SuppressWarnings("unchecked")
+	    public ID maxId() {
+	    	return (ID) getCurrentSession().createQuery("select max(id) from "+ clazz.getName()).uniqueResult();
+	    }
 }
