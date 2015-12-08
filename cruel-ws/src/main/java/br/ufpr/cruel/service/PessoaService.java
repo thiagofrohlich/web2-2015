@@ -88,7 +88,7 @@ public class PessoaService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/usuario")
-	public Pessoa findByEmail(String email, String senha) {
+	public Pessoa findUser(@QueryParam("email") String email, @QueryParam("senha") String senha) {
 		dao.openCurrentSession();
 		br.ufpr.cruel.domain.Pessoa result = dao.findByEmailAndSenha(email, senha);
 		dao.closeCurrentSession();
