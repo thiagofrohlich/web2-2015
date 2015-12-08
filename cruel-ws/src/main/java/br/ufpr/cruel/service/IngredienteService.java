@@ -13,22 +13,22 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import br.ufpr.cruel.domain.dao.TipoIngredienteDao;
-import br.ufpr.cruel.model.TipoIngrediente;
-import br.ufpr.cruel.service.transformer.TipoIngredienteTransformer;
+import br.ufpr.cruel.domain.dao.IngredienteDao;
+import br.ufpr.cruel.model.Ingrediente;
+import br.ufpr.cruel.service.transformer.IngredienteTransformer;
 import br.ufpr.cruel.service.transformer.Transformer;
 
-@Path("/TipoIngrediente")
-public class TipoIngredienteService {
+@Path("/Ingrediente")
+public class IngredienteService {
 
-	private TipoIngredienteDao dao = new TipoIngredienteDao();
-	private Transformer<TipoIngrediente, br.ufpr.cruel.domain.TipoIngrediente> transformer = new TipoIngredienteTransformer();
+	private IngredienteDao dao = new IngredienteDao();
+	private Transformer<Ingrediente, br.ufpr.cruel.domain.Ingrediente> transformer = new IngredienteTransformer();
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<TipoIngrediente> findAll() {
+	public List<Ingrediente> findAll() {
 		dao.openCurrentSession();
-		List<br.ufpr.cruel.domain.TipoIngrediente> list = dao.findAll();
+		List<br.ufpr.cruel.domain.Ingrediente> list = dao.findAll();
 		dao.closeCurrentSession();
 		
 		return transformer.transformToModel(list);
@@ -37,16 +37,16 @@ public class TipoIngredienteService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{id}")
-	public TipoIngrediente findById(@PathParam("id") Integer id) {
+	public Ingrediente findById(@PathParam("id") Integer id) {
 		return transformer.transformToModel( find(id) );
 	}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/nome/{nome}")
-	public List<TipoIngrediente> findByNome(@PathParam("nome") String nome) {
+	public List<Ingrediente> findByNome(@PathParam("nome") String nome) {
 		dao.openCurrentSession();
-		List<br.ufpr.cruel.domain.TipoIngrediente> result = dao.findByNome("%"+nome+"%");
+		List<br.ufpr.cruel.domain.Ingrediente> result = dao.findByNome("%"+nome+"%");
 		dao.closeCurrentSession();
 		
 		return transformer.transformToModel( result );
@@ -55,14 +55,14 @@ public class TipoIngredienteService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void create(TipoIngrediente model) {
+	public void create(Ingrediente model) {
 		persistDb( transformer.transformToDomain(model) );
 	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void update(TipoIngrediente model) {
+	public void update(Ingrediente model) {
 		updateDb( transformer.transformToDomain(model) );
 	}
 	
@@ -72,35 +72,35 @@ public class TipoIngredienteService {
 		deleteDb(id);
 	}
 	
-	private br.ufpr.cruel.domain.TipoIngrediente find(Integer id) {
+	private br.ufpr.cruel.domain.Ingrediente find(Integer id) {
 		dao.openCurrentSession();
-		br.ufpr.cruel.domain.TipoIngrediente tipo = dao.findById(id);
+		br.ufpr.cruel.domain.Ingrediente tipo = dao.findById(id);
 		dao.closeCurrentSession();
 		return tipo;
 	}
 	
 	private void deleteDb(Integer id) {
-		br.ufpr.cruel.domain.TipoIngrediente tipoIngrediente = find(id);
+		br.ufpr.cruel.domain.Ingrediente ingrediente = find(id);
 		dao.openCurrentSessionwithTransaction();
-		dao.delete(tipoIngrediente);
+		dao.delete(ingrediente);
 		dao.getCurrentSession().flush();
 		dao.getCurrentSession().clear();
 		dao.getCurrentTransaction().commit();
 		dao.closeCurrentSession();
 	}
 
-	private void persistDb(br.ufpr.cruel.domain.TipoIngrediente tipoIngrediente) {
+	private void persistDb(br.ufpr.cruel.domain.Ingrediente ingrediente) {
 		dao.openCurrentSessionwithTransaction();
-		dao.persist(tipoIngrediente);
+		dao.persist(ingrediente);
 		dao.getCurrentSession().flush();
 		dao.getCurrentSession().clear();
 		dao.getCurrentTransaction().commit();
 		dao.closeCurrentSession();
 	}
 	
-	private void updateDb(br.ufpr.cruel.domain.TipoIngrediente tipoIngrediente) {
+	private void updateDb(br.ufpr.cruel.domain.Ingrediente ingrediente) {
 		dao.openCurrentSessionwithTransaction();
-		dao.update(tipoIngrediente);
+		dao.update(ingrediente);
 		dao.getCurrentSession().flush();
 		dao.getCurrentSession().clear();
 		dao.getCurrentTransaction().commit();
