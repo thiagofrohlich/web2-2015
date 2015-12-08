@@ -34,7 +34,7 @@ public class TipoIngrediente extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		br.ufpr.cruel.model.TipoIngrediente tipo = new br.ufpr.cruel.model.TipoIngrediente();
-		tipo.setNome(request.getParameter("name"));
+		tipo.setNome(request.getParameter("nome"));
 		
 		Client client = ClientBuilder.newClient();
 		tipo = client.target("http://localhost:8080/cruel-ws/TipoIngrediente")

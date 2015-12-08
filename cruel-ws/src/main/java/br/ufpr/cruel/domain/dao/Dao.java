@@ -16,5 +16,7 @@ public interface Dao<T, ID extends Serializable> {
 	List<T> findAll();
 
 	void deleteAll();
+	
+	ID maxId();
 
 }

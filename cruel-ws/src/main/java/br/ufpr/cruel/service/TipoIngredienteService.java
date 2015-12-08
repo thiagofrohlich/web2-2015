@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -13,7 +12,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import br.ufpr.cruel.domain.dao.TipoIngredienteDao;
@@ -55,14 +53,14 @@ public class TipoIngredienteService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void create(@Context TipoIngrediente model) {
+	public void create(TipoIngrediente model) {
 		persistDb( transformToDomain(model) );
 	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void update(@FormParam("tipoIngrediente") TipoIngrediente model) {
+	public void update(TipoIngrediente model) {
 		updateDb( transformToDomain(model) );
 	}
 	
@@ -91,7 +89,9 @@ public class TipoIngredienteService {
 
 	private br.ufpr.cruel.domain.TipoIngrediente transformToDomain(TipoIngrediente model) {
 		br.ufpr.cruel.domain.TipoIngrediente domain = new br.ufpr.cruel.domain.TipoIngrediente();
-		domain.setId(model.getId());
+		if(model.getId() == null) {
+			domain.setId(model.getId());
+		}
 		domain.setNome(model.getNome());
 		return domain;
 	}
