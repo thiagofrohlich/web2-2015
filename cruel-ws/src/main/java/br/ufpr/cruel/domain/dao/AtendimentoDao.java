@@ -28,10 +28,10 @@ public class AtendimentoDao extends GenericDao<Atendimento, Integer> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Cardapio> findBetweenData(Date dataInicio, Date dataFim) {
+	public List<Atendimento> findBetweenData(Date dataInicio, Date dataFim) {
 		String query = "select a from Atendimento a "
 				+ "where a.data between :dataInicio and :dataFim";
-		return (List<Cardapio>) getCurrentSession().createQuery(query)
+		return (List<Atendimento>) getCurrentSession().createQuery(query)
 				.setParameter("dataInicio", dataInicio)
 				.setParameter("dataFim", dataFim).list();
 	}
