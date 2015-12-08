@@ -126,7 +126,7 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-		<form action="TipoIngrediente">
+		
 	        <div id="page-wrapper">
 	            <div class="row">
 	                <div class="col-lg-12">
@@ -152,7 +152,7 @@
 	                                        </tr>
 	                                    </thead>
 	                                    <tbody>
-	                                        <c:forEach var="lstTipo" items="${listatipoIngrediente}">
+	                                        <c:forEach var="lstTipo" items="${listaTipoIngrediente}">
 		                                        <tr class="odd gradeX">
 		                                            <td>${lstTipo.nome}</td>
 		                                            <td class="center">
@@ -172,7 +172,6 @@
 	                </div>
 	                <!-- /.col-lg-12 -->
 	            </div>
-	                        
 	            <div class="row hide" id="form-tip">
 	                <div class="col-lg-12">
 	                    <div class="panel panel-default">
@@ -182,7 +181,7 @@
 	                        <div class="panel-body">
 	                            <div class="row">
 	                                <div class="col-lg-6">
-	                                    <form role="form">
+	                                    <form role="form" action="TipoIngrediente">
 	                                        <div class="form-group">
 	                                            <label class="control-label" for="nome">Nome</label>
 	                                            <input id="nome" name="nome" class="form-control no-blank" />
@@ -198,7 +197,6 @@
 	                </div>
 	            </div>
 	        </div>
-		</form>
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 

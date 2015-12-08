@@ -1,11 +1,20 @@
 package br.ufpr.cruel.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
+
+import br.ufpr.cruel.model.Pessoa;
 
 /**
  * Servlet implementation class Gerente
@@ -13,9 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 public class Gerente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	List<Pessoa> listaPessoa = new ArrayList<>();
+	
     public Gerente() {
         super();
         // TODO Auto-generated constructor stub
@@ -25,16 +33,34 @@ public class Gerente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		Pessoa gerente = new Pessoa();
+		gerente.setNome(request.getParameter("nome"));
+		gerente.setEmail(request.getParameter("email"));
+		gerente.setTelefone(request.getParameter("telefone"));
+		gerente.setSenha(request.getParameter("senha"));
+		gerente.setEndereco(request.getParameter("endereco"));
+		gerente.setTipoPessoa("gerente");
+		
+		Client client = ClientBuilder.newClient();
+		client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.json(gerente), br.ufpr.cruel.model.TipoIngrediente.class);
+		
+		listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+                .request(MediaType.APPLICATION_JSON)
+                .get(ArrayList.class);
+		request.setAttribute("listaTipoIngrediente", listaPessoa);
+		
+		RequestDispatcher rd = getServletContext().
+				getRequestDispatcher("/pages/manterTipoIngrediente.jsp");
+				rd.forward(request, response);
 	}
 
 }
