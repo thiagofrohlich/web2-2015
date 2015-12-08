@@ -25,9 +25,12 @@ public class TipoIngredienteTransformer implements Transformer<TipoIngrediente, 
 	 */
 	@Override
 	public TipoIngrediente transformToModel(br.ufpr.cruel.domain.TipoIngrediente tipoIngrediente) {
-		TipoIngrediente model = new TipoIngrediente();
-		model.setId(tipoIngrediente.getId());
-		model.setNome(tipoIngrediente.getNome());
+		TipoIngrediente model = null;
+		if(tipoIngrediente != null) {
+			model = new TipoIngrediente();
+			model.setId(tipoIngrediente.getId());
+			model.setNome(tipoIngrediente.getNome());
+		}
 		return model;
 	}
 	

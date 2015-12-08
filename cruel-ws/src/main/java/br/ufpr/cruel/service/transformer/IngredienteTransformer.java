@@ -33,10 +33,13 @@ public class IngredienteTransformer implements Transformer<Ingrediente, br.ufpr.
 	@Override
 	public Ingrediente transformToModel(br.ufpr.cruel.domain.Ingrediente ingrediente) {
 		Ingrediente model = new Ingrediente();
-		model.setId(ingrediente.getId());
-		model.setNome(ingrediente.getNome());
-		model.setDescricao(ingrediente.getDescricao());
-		model.setTipoIngrediente(tipoIngredienteTransformer.transformToModel(ingrediente.getTipoIngrediente()));
+		if(ingrediente != null) {
+			model = new Ingrediente();
+			model.setId(ingrediente.getId());
+			model.setNome(ingrediente.getNome());
+			model.setDescricao(ingrediente.getDescricao());
+			model.setTipoIngrediente(tipoIngredienteTransformer.transformToModel(ingrediente.getTipoIngrediente()));
+		}
 		return model;
 	}
 	
