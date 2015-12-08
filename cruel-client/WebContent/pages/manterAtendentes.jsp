@@ -211,26 +211,26 @@
                                     <form role="form" action="Atendente?action=salva" method="post">
                                         <div class="form-group">
                                             <label class="control-label" for="nome">Nome</label>
-                                            <input id="nome" name="nome" class="form-control no-blank" />
+                                            <input id="nome" name="nome" class="form-control no-blank" value="${atendente.nome}"/>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="cpf">CPF</label>
-                                            <input id="cpf" name="cpf" class="form-control cpf no-blank only-numeric">
-                                            <p class="help-block">Apenas nÃºmeros. Ex.: 12345678910</p>
+                                            <input id="cpf" name="cpf" class="form-control cpf no-blank only-numeric" value="${atendente.cpf}">
+                                            <p class="help-block">Apenas números. Ex.: 12345678910</p>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="endereco">Endere&ccedilo</label>
-                                            <input id="endereco" name="endereco" class="form-control no-blank">
+                                            <label class="control-label" for="endereco">Endereço</label>
+                                            <input id="endereco" name="endereco" class="form-control no-blank" value="${atendente.endereco}">
                                             <p class="help-block">EndereÃ§o completo.</p>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="telefone">Telefone</label>
-                                            <input id="telefone" name="telefone" class="form-control no-blank only-numeric">
+                                            <input id="telefone" name="telefone" class="form-control no-blank only-numeric" value="${atendente.telefone}">
                                             <p class="help-block">Apenas nÃºmeros. Ex.: 33123456</p>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="email">Email</label>
-                                            <input id="email" name="email" class="form-control no-blank email">
+                                            <input id="email" name="email" class="form-control no-blank email" value="${atendente.email}">
                                         </div>
 		                                <div class="form-group">
 		                                	<label class="control-label" for="senha">Senha</label>

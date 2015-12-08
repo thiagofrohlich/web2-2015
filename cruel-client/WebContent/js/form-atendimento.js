@@ -11,24 +11,26 @@ $(document).ready(function() {
 	});
 	
 	$('.edit-atendimento').click(function() {
-		parameters = '?edit=true&id=';
+		parameters = 'http://localhost:8080/cruel-client/pages/Atendimento?action=edit&id=';
 		
-		id = $(this).parent().children('#id').val();
+		tr = $(this).parent().parent(); //5
+		td = $(tr).children().eq(0);
 		
-		parameters += $.trim(id);
+		parameters += $.trim(td);
 		url = window.location.href;
 		if(url.indexOf('?') >= 0) {
 			url = url.substring(0, url.indexOf('?'));
 		}
-		
-		window.location.replace(url+parameters);
+		window.location.replace(parameters);
+		showFormTip();
 		
 	});
 	
 	$('.delete-atendimento').click(function() {
-		parameters = '?delete=true&id=';
+		parameters = 'http://localhost:8080/cruel-client/pages/Atendimento?action=delete&id=';
 		
-		id = $(this).parent().children('#id').val();
+		id = $(this).parent().parent().children().eq(0).text();
+		nome = $(this).parent().parent().children().eq(1).text();
 		
 		del = confirm('Deletar registro?');
 		if(del) {
@@ -38,15 +40,14 @@ $(document).ready(function() {
 				url = url.substring(0, url.indexOf('?'));
 			}
 			
-			window.location.replace(url+parameters);
+			window.location.replace(parameters);
 		}
 		
 	});
 	
 	edit = getUrlParameter('edit');
-	if(edit != null && edit == 'true') {
+	if(edit != null && edit == 'edit') {
 		showFormPessoa();
-		populateFormAtendimento();
 	}
 	
 });
@@ -60,8 +61,8 @@ function getUrlParameter(sParam) {
     for (i = 0; i < sURLVariables.length; i++) {
         sParameterName = sURLVariables[i].split('=');
 
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
+        if (sParameterName[1] === sParam) {
+            return sParameterName[1] === undefined ? 'edit' : sParameterName[1];
         }
     }
 };

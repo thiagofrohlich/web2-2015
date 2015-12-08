@@ -164,16 +164,16 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-examples">
                                     <thead>
                                         <tr>
-                                            <th>CÃ³digo</th>
-                                            <th>DescriÃ§Ã£o</th>
+                                            <th>Código</th>
+                                            <th>Descrição</th>
                                             <th>valor Refeição</th>
-                                            <th>AÃ§Ãµes</th>
+                                            <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     	<c:forEach var="lstCliente" items="${listaCliente}">
 	                                        <tr class="odd gradeX">
-	                                            <td>${lstCliente.codigo}</td>
+	                                            <td>${lstCliente.id}</td>
 	                                            <td>${lstCliente.descricao}</td>
 	                                            <td>${lstCliente.valorRefeicao}</td>
 	                                            <td class="center">
@@ -203,15 +203,15 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form role="form" action="TipoCliente?action=salva" method="post">
                                         <div class="form-group">
-                                            <label class="control-label" for="codigo">CÃ³digo</label>
-                                            <input id="codigo" name="codigo" class="form-control no-blank" disabled="disabled" value="2"/>
+                                            <label class="control-label" for="descricao">Descrição</label>
+                                            <input id="codigo" name="descricao" class="form-control no-blank"  value="${tipoCliente.descricao}"/>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="descricao">DescriÃ§Ã£o</label>
-                                            <input id="descricao" name="descricao" class="form-control no-blank">
-                                            <p class="help-block">Apenas nÃºmeros. Ex.: 12345678910</p>
+                                            <label class="control-label" for="valor">Valor Refeição</label>
+                                            <input id="descricao" name="valor" class="form-control no-blank" value="${tipoCliente.valorRefeicao}">
+                                            <p class="help-block">Apenas números. Ex.: 12345678910</p>
                                         </div>
                                         <button type="submit" class="btn btn-default">Salvar</button>
                                         <button id="reset-button" type="reset" class="btn btn-default">Cancelar</button>

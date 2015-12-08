@@ -65,4 +65,12 @@
     <servlet-name>atendimento</servlet-name>
     <url-pattern>/pages/Atendimento</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>tipoCliente</servlet-name>
+    <servlet-class>br.ufpr.cruel.servlet.TipoCliente</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>tipoCliente</servlet-name>
+    <url-pattern>/pages/TipoCliente</url-pattern>
+  </servlet-mapping>
 </web-app>

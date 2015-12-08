@@ -199,11 +199,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="nome">Nome</label>
-                                            <input id="nome" class="form-control no-blank">
+                                            <input id="nome" class="form-control no-blank" value="${ingrediente.nome}">
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="descricao">DescriÃ§Ã£o</label>
-                                            <textarea class="form-control no-blank" rows="3" id="descricao" ></textarea>
+                                            <label class="control-label" for="descricao">Descrição</label>
+                                            <textarea class="form-control no-blank" rows="3" id="descricao"  >${ingrediente.descricao}</textarea>
                                         </div>
 										<button type="submit" class="btn btn-default">Salvar</button>
                                         <button id="reset-button" type="reset" class="btn btn-default">Cancelar</button>

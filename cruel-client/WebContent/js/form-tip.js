@@ -27,7 +27,7 @@ $(document).ready(function() {
 
 	
 	edit = getUrlParameter('edit');
-	if(edit != null && edit == 'true') {
+	if(edit != null && edit == 'edit') {
 		showFormTip();
 	}
 	
@@ -64,8 +64,8 @@ function getUrlParameter(sParam) {
     for (i = 0; i < sURLVariables.length; i++) {
         sParameterName = sURLVariables[i].split('=');
 
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
+        if (sParameterName[1] === sParam) {
+            return sParameterName[1] === undefined ? 'edit' : sParameterName[1];
         }
     }
 };

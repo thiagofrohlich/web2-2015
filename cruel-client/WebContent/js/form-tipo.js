@@ -10,7 +10,7 @@ $(document).ready(function() {
 	});
 	
 	$('.edit-tipo').click(function() {
-		parameters = '?edit=true&id=';
+		parameters = 'http://localhost:8080/cruel-client/pages/TipoCliente?action=edit&id=';
 		
 		tr = $(this).parent().parent();
 		td = $(tr).children().eq(0);
@@ -20,13 +20,12 @@ $(document).ready(function() {
 		if(url.indexOf('?') >= 0) {
 			url = url.substring(0, url.indexOf('?'));
 		}
-		
-		window.location.replace(url+parameters);
+		window.location.replace(parameters);
 		
 	});
 	
 	$('.delete-tipo').click(function() {
-		parameters = '?delete=true&id=';
+		parameters = 'http://localhost:8080/cruel-client/pages/TipoCliente?action=delete&id=';
 		
 		desc = $(this).parent().parent().children().eq(1).text();
 		codigo = $(this).parent().parent().children().eq(0).text();
@@ -40,15 +39,14 @@ $(document).ready(function() {
 				url = url.substring(0, url.indexOf('?'));
 			}
 			
-			window.location.replace(url+parameters);
+			window.location.replace(parameters);
 		}
 		
 	});
 	
 	edit = getUrlParameter('edit');
-	if(edit != null && edit == 'true') {
+	if(edit != null && edit == 'edit') {
 		showFormTipo();
-		populateFormTipo();
 	}
 	
 });
@@ -62,8 +60,8 @@ function getUrlParameter(sParam) {
     for (i = 0; i < sURLVariables.length; i++) {
         sParameterName = sURLVariables[i].split('=');
 
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
+        if (sParameterName[1] === sParam) {
+            return sParameterName[1] === undefined ? 'edit' : sParameterName[1];
         }
     }
 };

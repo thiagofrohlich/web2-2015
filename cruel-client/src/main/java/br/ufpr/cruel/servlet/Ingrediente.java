@@ -52,7 +52,7 @@ public class Ingrediente extends HttpServlet {
 			listaIngrediente =  (List<br.ufpr.cruel.model.Ingrediente>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
-			request.setAttribute("listaTipoIngrediente", listaIngrediente);
+			request.setAttribute("listaIngrediente", listaIngrediente);
 			
 			RequestDispatcher rd = getServletContext().
 					getRequestDispatcher("/pages/manterTipoIngrediente.jsp");
@@ -83,7 +83,7 @@ public class Ingrediente extends HttpServlet {
 			listaIngrediente =  (List<br.ufpr.cruel.model.Ingrediente>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
-			request.setAttribute("listaTipoIngrediente", listaIngrediente);
+			request.setAttribute("listaIngrediente", listaIngrediente);
 			
 			RequestDispatcher rd = getServletContext().
 					getRequestDispatcher("/pages/manterIngrediente.jsp");
@@ -95,7 +95,7 @@ public class Ingrediente extends HttpServlet {
 			listaIngrediente =  (List<br.ufpr.cruel.model.Ingrediente>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
-			request.setAttribute("listaTipoIngrediente", listaIngrediente);
+			request.setAttribute("listaIngrediente", listaIngrediente);
 			
 			RequestDispatcher rd = getServletContext().
 					getRequestDispatcher("/pages/manterIngrediente.jsp");

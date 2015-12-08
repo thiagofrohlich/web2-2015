@@ -1,6 +1,7 @@
 package br.ufpr.cruel.servlet;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,15 +18,14 @@ import javax.ws.rs.core.MediaType;
 import br.ufpr.cruel.model.Pessoa;
 
 /**
- * Servlet implementation class nutricionista
+ * Servlet implementation class TipoCliente
  */
-public class Nutricionista extends HttpServlet {
+public class TipoCliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    List<Pessoa> listaPessoa = new ArrayList<>();
-    public Nutricionista() {
+    
+	private List<TipoCliente> listaCliente = new ArrayList<>();
+    public TipoCliente() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -42,73 +42,68 @@ public class Nutricionista extends HttpServlet {
 		String action = request.getParameter("action");
 		
 		if(action.equals("salva")){
-			Pessoa nutricionista = new Pessoa();
-			nutricionista.setNome(request.getParameter("nome"));
-			nutricionista.setEmail(request.getParameter("email"));
-			nutricionista.setTelefone(request.getParameter("telefone"));
-			nutricionista.setSenha(request.getParameter("senha"));
-			nutricionista.setEndereco(request.getParameter("endereco"));
-			nutricionista.setCrn(request.getParameter("crn"));
-			nutricionista.setTipoPessoa("nutricionista");
+			br.ufpr.cruel.model.TipoCliente tipoCliente = new br.ufpr.cruel.model.TipoCliente();
+			tipoCliente.setDescricao(request.getParameter("descricao"));
+			tipoCliente.setValorRefeicao(new BigDecimal(request.getParameter("valor")));
 			
 			Client client = ClientBuilder.newClient();
-			client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+			client.target("http://localhost:8080/cruel-ws/TipoCliente")
 			.request(MediaType.APPLICATION_JSON)
-			.post(Entity.json(nutricionista), br.ufpr.cruel.model.TipoIngrediente.class);
+			.post(Entity.json(tipoCliente),br.ufpr.cruel.model.TipoCliente.class);
 			
-			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+			listaCliente =  (List<TipoCliente>) client.target("http://localhost:8080/cruel-ws/TipoCliente")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
-			request.setAttribute("listaNutricionista", listaPessoa);
+			
+			request.setAttribute("listaCliente", listaCliente);
 			
 			RequestDispatcher rd = getServletContext().
-					getRequestDispatcher("/pages/manterTipoIngrediente.jsp");
+					getRequestDispatcher("/pages/tipoCliente.jsp");
 			rd.forward(request, response);
 		}
 		
 		if(action.equals("edit")){
 			Integer id = Integer.parseInt(request.getParameter("id"));
 			Client client = ClientBuilder.newClient();
-			Pessoa pessoa = client.target("http://localhost:8080/cruel-ws/Pessoa/"+id)
+			br.ufpr.cruel.model.TipoCliente tipoCliente = client.target("http://localhost:8080/cruel-ws/TipoCliente/"+id)
 			.request(MediaType.APPLICATION_JSON)
-			.get(Pessoa.class);
+			.get(br.ufpr.cruel.model.TipoCliente.class);
 			
-			request.setAttribute("pessoa", pessoa);
+			request.setAttribute("tipoCliente", tipoCliente);
 			
 			RequestDispatcher rd = getServletContext().
-					getRequestDispatcher("/pages/manterNutricionistas.jsp");
+					getRequestDispatcher("/pages/tipoCliente.jsp");
 			rd.forward(request, response);
 		}
 		
 		if(action.equals("delete")){
 			Integer id = Integer.parseInt(request.getParameter("id"));
 			Client client = ClientBuilder.newClient();
-			client.target("http://localhost:8080/cruel-ws/Pessoa/"+id)
+			client.target("http://localhost:8080/cruel-ws/TipoCliente/"+id)
 			.request(MediaType.APPLICATION_JSON)
 			.delete(Pessoa.class);
 			
-			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+			listaCliente =  (List<TipoCliente>) client.target("http://localhost:8080/cruel-ws/TipoCliente")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
-			request.setAttribute("listaNutricionista", listaPessoa);
+			request.setAttribute("listaCliente", listaCliente);
 			
 			RequestDispatcher rd = getServletContext().
-					getRequestDispatcher("/pages/manterNutricionistas.jsp");
+					getRequestDispatcher("/pages/tipoCliente.jsp");
 			rd.forward(request, response);
 		}
 		
 		if(action.equals("inicio")){
 			Client client = ClientBuilder.newClient();
-			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+			listaCliente =  (List<TipoCliente>) client.target("http://localhost:8080/cruel-ws/TipoCliente")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
-			request.setAttribute("listaNutricionista", listaPessoa);
+			request.setAttribute("listaCliente", listaCliente);
 			
 			RequestDispatcher rd = getServletContext().
-					getRequestDispatcher("/pages/manterNutricionistas.jsp");
+					getRequestDispatcher("/pages/tipoCliente.jsp");
 			rd.forward(request, response);
 		}
-		
 	}
 
 }

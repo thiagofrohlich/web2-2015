@@ -59,7 +59,7 @@ public class Gerente extends HttpServlet {
 			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
-			request.setAttribute("listaTipoIngrediente", listaPessoa);
+			request.setAttribute("listaGerente", listaPessoa);
 			
 			RequestDispatcher rd = getServletContext().
 					getRequestDispatcher("/pages/manterTipoIngrediente.jsp");
@@ -90,7 +90,7 @@ public class Gerente extends HttpServlet {
 			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
-			request.setAttribute("listaTipoIngrediente", listaPessoa);
+			request.setAttribute("listaGerente", listaPessoa);
 			
 			RequestDispatcher rd = getServletContext().
 					getRequestDispatcher("/pages/manterGerentes.jsp");
@@ -102,7 +102,7 @@ public class Gerente extends HttpServlet {
 			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
-			request.setAttribute("listaTipoIngrediente", listaPessoa);
+			request.setAttribute("listaGerente", listaPessoa);
 			
 			RequestDispatcher rd = getServletContext().
 					getRequestDispatcher("/pages/manterGerentes.jsp");

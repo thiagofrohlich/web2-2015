@@ -173,11 +173,12 @@
                                     <tbody>
                                         <c:forEach var="lstAtendimento" items="${listaAtendimento}">
 	                                        <tr class="odd gradeX">
+	                                            <td class="hide">${lstAtendimento.id}</td>
 	                                            <td>${lstAtendimento.categoria}</td>
 	                                            <td>${lstAtendimento.data}</td>
 	                                            <td>${lstAtendimento.valor}</td>
 	                                            <td class="center">
-	                                            	<input type="hidden" id="id" value="1" />
+	                                            	
 	                                            	<button type="button" class="btn btn-info btn-circle edit-atendimento"><i class="fa fa-edit"></i></button>
 	                                            	<button type="button" class="btn btn-danger btn-circle delete-atendimento"><i class="fa fa-times"></i></button>
 	                                            </td>
@@ -207,17 +208,17 @@
                                     <form role="form" action="Atendimento?action=salva" method="post">
                                         <div class="form-group">
                                             <label class="control-label" for="categoria">Categoria</label>
-                                            <input id="categoria" name="categoria" class="form-control no-blank" />
+                                            <input id="categoria" name="categoria" class="form-control no-blank" value="${atendimento.categoria}"/>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="data">Data</label>
-                                            <input id="data" name="data" class="form-control no-blank" disabled="disabled" value="01/01/2015 00:00:00" />
+                                            <input id="data" name="data" class="form-control no-blank" disabled="disabled" value="${atendimento.data}" />
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="valor">Valor</label>
-                                            <select class="form-control" id="valor" >
-												<c:forEach var="lstValor" items="${valor}">
-													<option>${lstValor}</option>
+                                            <label class="control-label" for="cliente">Cliente</label>
+                                            <select class="form-control" id="cliente" >
+												<c:forEach var="cliente" items="${listaCliente}">
+													<option>${cliente.nome}</option>
 												</c:forEach>
 											</select>
                                         </div>

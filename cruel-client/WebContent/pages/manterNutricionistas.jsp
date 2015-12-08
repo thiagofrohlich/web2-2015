@@ -214,31 +214,31 @@
                                     <form role="form" action="Nutricionista?action=salva" method="post">
                                         <div class="form-group">
                                             <label class="control-label" for="nome">Nome</label>
-                                            <input id="nome" name="nome" class="form-control no-blank" />
+                                            <input id="nome" name="nome" class="form-control no-blank" value="${nutricionista.nome}"/>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="cpf">CPF</label>
-                                            <input id="cpf" name="cpf" class="form-control cpf no-blank only-numeric">
-                                            <p class="help-block">Apenas números. Ex.: 12345678910</p>
+                                            <input id="cpf" name="cpf" class="form-control cpf no-blank only-numeric" value="${nutricionista.cpf}">
+                                            <p class="help-block">Apenas n�meros. Ex.: 12345678910</p>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="crn">CRN</label>
-                                            <input id="crn" name="crn" class="form-control crn no-blank only-numeric">
+                                            <input id="crn" name="crn" class="form-control crn no-blank only-numeric" value="${nutricionista.crn}">
                                             <p class="help-block">Apenas números. Ex.: 12345678910</p>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="endereco">Endere&ccedilo</label>
-                                            <input id="endereco" name="endereco" class="form-control no-blank">
+                                            <label class="control-label" for="endereco">Endere�o</label>
+                                            <input id="endereco" name="endereco" class="form-control no-blank" value="${nutricionista.endereco}">
                                             <p class="help-block">Endereço completo.</p>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="telefone">Telefone</label>
-                                            <input id="telefone" name="telefone" class="form-control no-blank only-numeric">
+                                            <input id="telefone" name="telefone" class="form-control no-blank only-numeric" value="${nutricionista.telefone}">
                                             <p class="help-block">Apenas números. Ex.: 33123456</p>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="email">Email</label>
-                                            <input id="email" name="email" class="form-control no-blank email">
+                                            <input id="email" name="email" class="form-control no-blank email" value="${nutricionista.email}">
                                         </div>
 		                                <div class="form-group">
 		                                	<label class="control-label" for="senha">Senha</label>

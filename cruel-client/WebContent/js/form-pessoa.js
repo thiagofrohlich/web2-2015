@@ -10,7 +10,7 @@ $(document).ready(function() {
 	});
 	
 	$('.edit-pessoa').click(function() {
-		parameters = '?edit=true&id=';
+		parameters = 'http://localhost:8080/cruel-client/pages/Pessoa?action=edit&id=';
 		
 		tr = $(this).parent().parent();
 		td = $(tr).children().eq(0);
@@ -20,33 +20,34 @@ $(document).ready(function() {
 		if(url.indexOf('?') >= 0) {
 			url = url.substring(0, url.indexOf('?'));
 		}
-		
-		window.location.replace(url+parameters);
+		showFormPessoa();
+		window.location.replace(parameters);
 		
 	});
 	
 	$('.delete-pessoa').click(function() {
-		parameters = '?delete=true&id=';
+		parameters = 'http://localhost:8080/cruel-client/pages/Pessoa?action=delete&id=';
 		
-		nome = $(this).parent().parent().children().eq(1).text();
-		email = $(this).parent().parent().children().eq(0).text();
+		id = $(this).parent().parent().children().eq(0).text();
+		nome = $(this).parent().parent().children().eq(2).text();
+		email = $(this).parent().parent().children().eq(1).text();
 		
 		del = confirm('Quer mesmo deletar '+ nome + ' / ' + email + ' ?');
 		
 		if(del) {
-			parameters += email;
+			parameters += id;
 			url = window.location.href;
 			if(url.indexOf('?') >= 0) {
 				url = url.substring(0, url.indexOf('?'));
 			}
 			
-			window.location.replace(url+parameters);
+			window.location.replace(parameters);
 		}
 		
 	});
 	
 	edit = getUrlParameter('edit');
-	if(edit != null && edit == 'true') {
+	if(edit != null && edit == 'edit') {
 		showFormPessoa();
 	}
 	
@@ -61,8 +62,8 @@ function getUrlParameter(sParam) {
     for (i = 0; i < sURLVariables.length; i++) {
         sParameterName = sURLVariables[i].split('=');
 
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
+        if (sParameterName[1] === sParam) {
+            return sParameterName[1] === undefined ? 'edit' : sParameterName[1];
         }
     }
 };
