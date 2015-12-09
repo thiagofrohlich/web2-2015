@@ -1,3 +1,4 @@
+<%@include file="check-auth.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 
     <title>CRUEL - Manter Atendentes</title>
 
@@ -40,92 +40,7 @@
 
 <body>
 		
-		<!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">CRUEL</a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-                <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-            </ul>
-            <!-- /.navbar-top-links -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                                              
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Nutricionista<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="nutricionistaInicial.html">Início</a>
-                                </li>
-								<li>
-                                    <a href="cadastroCardapio.html">Cadastro de cardápio</a>
-                                </li>
-                                <li>
-                                    <a href="manterIngredientes.html">Ingredientes</a>
-                                </li>
-								<li>
-                                    <a href="manterTipoIngrediente.html">Tipo de ingrediente</a>
-                                </li>
-								<li>
-                                    <a href="nutricionistaMes.html">Cardápio mês a mês</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        
-                   
-                                              
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Gerente<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="manterAtendentes.html">Atendentes</a>
-                                </li>
-                                <li>
-                                    <a href="manterNutricionistas.html">Nutricionistas</a>
-                                </li>
-								<li>
-                                    <a href="tipoCliente.html">Tipo de Cliente</a>
-                                </li>
-								<li>
-                                    <a href="manterGerentes.html">Gerentes</a>
-                                </li>
-								<li>
-                                    <a href="relatorios.html">Relatórios</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        
-                  
-                                              
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Atendente<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="registrarAtendimento.html">Registrar Cliente</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
+		<%@include file="menu.jsp" %>
 		
         <div id="page-wrapper">
             <div class="row">
@@ -168,22 +83,23 @@
                                             <th>Email</th>
                                             <th>Nome</th>
                                             <th>CPF</th>
-                                            <th>Endereço</th>
+                                            <th>Endere�o</th>
                                             <th>Telefone</th>
-                                            <th>Ações</th>
+                                            <th>A��es</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       	<c:forEach var="lstPessoa" items="${listaPessoa}">
+                                       	<c:forEach var="lstPessoa" items="${listaAtendente}">
    		                                     <tr class="odd gradeX">
+	                                            <td class="hide">${lstPessoa.id}</td>
 	                                            <td>${lstPessoa.email}</td>
 	                                            <td>${lstPessoa.nome}</td>
 	                                            <td>${lstPessoa.cpf}</td>
 	                                            <td>${lstPessoa.endereco}</td>
 	                                            <td>${lstPessoa.telefone}</td>
 	                                            <td class="center">
-	                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa"><i class="fa fa-edit"></i></button>
-	                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa"><i class="fa fa-times"></i></button>
+	                                            	<button type="button" class="btn btn-info btn-circle edit-pessoa atendente-edit"><i class="fa fa-edit"></i></button>
+	                                            	<button type="button" class="btn btn-danger btn-circle delete-pessoa atendente-delete"><i class="fa fa-times"></i></button>
 	                                            </td>
 	                                        </tr>
                                        	</c:forEach>

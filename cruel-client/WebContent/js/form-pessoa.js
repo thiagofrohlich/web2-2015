@@ -9,8 +9,8 @@ $(document).ready(function() {
 		$('#table').removeClass("hide");
 	});
 	
-	$('.edit-pessoa').click(function() {
-		parameters = 'http://localhost:8080/cruel-client/pages/Pessoa?action=edit&id=';
+	$('.nutricionista-edit').click(function() {
+		parameters = 'http://localhost:8080/cruel-client/pages/Nutricionista?action=edit&id=';
 		
 		tr = $(this).parent().parent();
 		td = $(tr).children().eq(0);
@@ -25,8 +25,82 @@ $(document).ready(function() {
 		
 	});
 	
-	$('.delete-pessoa').click(function() {
-		parameters = 'http://localhost:8080/cruel-client/pages/Pessoa?action=delete&id=';
+	$('.nutricionista-delete').click(function() {
+		parameters = 'http://localhost:8080/cruel-client/pages/Nutricionista?action=delete&id=';
+		
+		id = $(this).parent().parent().children().eq(0).text();
+		nome = $(this).parent().parent().children().eq(2).text();
+		email = $(this).parent().parent().children().eq(1).text();
+		
+		del = confirm('Quer mesmo deletar '+ nome + ' / ' + email + ' ?');
+		
+		if(del) {
+			parameters += id;
+			url = window.location.href;
+			if(url.indexOf('?') >= 0) {
+				url = url.substring(0, url.indexOf('?'));
+			}
+			
+			window.location.replace(parameters);
+		}
+		
+	});
+	
+	$('.atendente-edit').click(function() {
+		parameters = 'http://localhost:8080/cruel-client/pages/Atendente?action=edit&id=';
+		
+		tr = $(this).parent().parent();
+		td = $(tr).children().eq(0);
+		
+		parameters += $.trim($(td).text());
+		url = window.location.href;
+		if(url.indexOf('?') >= 0) {
+			url = url.substring(0, url.indexOf('?'));
+		}
+		showFormPessoa();
+		window.location.replace(parameters);
+		
+	});
+	
+	$('.atendente-delete').click(function() {
+		parameters = 'http://localhost:8080/cruel-client/pages/Atendente?action=delete&id=';
+		
+		id = $(this).parent().parent().children().eq(0).text();
+		nome = $(this).parent().parent().children().eq(2).text();
+		email = $(this).parent().parent().children().eq(1).text();
+		
+		del = confirm('Quer mesmo deletar '+ nome + ' / ' + email + ' ?');
+		
+		if(del) {
+			parameters += id;
+			url = window.location.href;
+			if(url.indexOf('?') >= 0) {
+				url = url.substring(0, url.indexOf('?'));
+			}
+			
+			window.location.replace(parameters);
+		}
+		
+	});
+	
+	$('.gerente-edit').click(function() {
+		parameters = 'http://localhost:8080/cruel-client/pages/Gerente?action=edit&id=';
+		
+		tr = $(this).parent().parent();
+		td = $(tr).children().eq(0);
+		
+		parameters += $.trim($(td).text());
+		url = window.location.href;
+		if(url.indexOf('?') >= 0) {
+			url = url.substring(0, url.indexOf('?'));
+		}
+		showFormPessoa();
+		window.location.replace(parameters);
+		
+	});
+	
+	$('.gerente-delete').click(function() {
+		parameters = 'http://localhost:8080/cruel-client/pages/Gerente?action=delete&id=';
 		
 		id = $(this).parent().parent().children().eq(0).text();
 		nome = $(this).parent().parent().children().eq(2).text();

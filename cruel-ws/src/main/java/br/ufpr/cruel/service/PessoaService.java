@@ -51,6 +51,17 @@ public class PessoaService {
 		
 		return transformer.transformToModel( result );
 	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/tipo/{tipo}")
+	public List<Pessoa> findByTipo(@PathParam("tipo") String tipo) {
+		dao.openCurrentSession();
+		List<br.ufpr.cruel.domain.Pessoa> result = dao.findByTipo("%"+tipo+"%");
+		dao.closeCurrentSession();
+		
+		return transformer.transformToModel( result );
+	}
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

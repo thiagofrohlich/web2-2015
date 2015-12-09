@@ -45,6 +45,7 @@ public class Gerente extends HttpServlet {
 		if(action.equals("salva")){
 			Pessoa gerente = new Pessoa();
 			gerente.setNome(request.getParameter("nome"));
+			gerente.setCpf(request.getParameter("cpf"));
 			gerente.setEmail(request.getParameter("email"));
 			gerente.setTelefone(request.getParameter("telefone"));
 			gerente.setSenha(request.getParameter("senha"));
@@ -52,17 +53,17 @@ public class Gerente extends HttpServlet {
 			gerente.setTipoPessoa("gerente");
 			
 			Client client = ClientBuilder.newClient();
-			client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+			client.target("http://localhost:8080/cruel-ws/Pessoa")
 			.request(MediaType.APPLICATION_JSON)
-			.post(Entity.json(gerente), br.ufpr.cruel.model.TipoIngrediente.class);
+			.post(Entity.json(gerente), br.ufpr.cruel.model.Pessoa.class);
 			
-			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/tipo/gerente")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
 			request.setAttribute("listaGerente", listaPessoa);
 			
 			RequestDispatcher rd = getServletContext().
-					getRequestDispatcher("/pages/manterTipoIngrediente.jsp");
+					getRequestDispatcher("/pages/manterGerente.jsp");
 			rd.forward(request, response);
 		}
 		
@@ -73,7 +74,7 @@ public class Gerente extends HttpServlet {
 			.request(MediaType.APPLICATION_JSON)
 			.get(Pessoa.class);
 			
-			request.setAttribute("pessoa", pessoa);
+			request.setAttribute("gerente", pessoa);
 			
 			RequestDispatcher rd = getServletContext().
 					getRequestDispatcher("/pages/manterGerentes.jsp");
@@ -87,7 +88,7 @@ public class Gerente extends HttpServlet {
 			.request(MediaType.APPLICATION_JSON)
 			.delete(Pessoa.class);
 			
-			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/tipo/gerente")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
 			request.setAttribute("listaGerente", listaPessoa);
@@ -99,7 +100,7 @@ public class Gerente extends HttpServlet {
 		
 		if(action.equals("inicio")){
 			Client client = ClientBuilder.newClient();
-			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/tipo/gerente")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
 			request.setAttribute("listaGerente", listaPessoa);

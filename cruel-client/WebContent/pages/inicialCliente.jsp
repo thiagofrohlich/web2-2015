@@ -1,3 +1,4 @@
+<%@include file="check-auth.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -18,6 +18,13 @@ public class PessoaDao extends GenericDao<Pessoa, Integer> {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<Pessoa> findByTipo(String tipo) {
+		String query = "select p from Pessoa p "
+				+ "where p.tipoPessoa like :tipoPessoa";
+		return (List<Pessoa>) getCurrentSession().createQuery(query).setParameter("tipoPessoa", tipo).list();
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<Pessoa> findByCpf(String cpf) {
 		String query = "select p from Pessoa p "
 				+ "where p.cpf like :cpf";

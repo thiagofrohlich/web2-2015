@@ -44,6 +44,7 @@ public class Atendente extends HttpServlet {
 		if(action.equals("salva")){
 			Pessoa atendente = new Pessoa();
 			atendente.setNome(request.getParameter("nome"));
+			atendente.setCpf(request.getParameter("cpf"));
 			atendente.setEmail(request.getParameter("email"));
 			atendente.setTelefone(request.getParameter("telefone"));
 			atendente.setSenha(request.getParameter("senha"));
@@ -51,17 +52,17 @@ public class Atendente extends HttpServlet {
 			atendente.setTipoPessoa("atendente");
 			
 			Client client = ClientBuilder.newClient();
-			client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+			client.target("http://localhost:8080/cruel-ws/Pessoa")
 			.request(MediaType.APPLICATION_JSON)
-			.post(Entity.json(atendente), br.ufpr.cruel.model.TipoIngrediente.class);
+			.post(Entity.json(atendente), br.ufpr.cruel.model.Pessoa.class);
 			
-			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/tipo/"+atendente.getTipoPessoa())
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
 			request.setAttribute("listaAtendente", listaPessoa);
 			
 			RequestDispatcher rd = getServletContext().
-					getRequestDispatcher("/pages/manterTipoIngrediente.jsp");
+					getRequestDispatcher("/pages/manterAtendentes.jsp");
 			rd.forward(request, response);
 		}
 		
@@ -72,7 +73,7 @@ public class Atendente extends HttpServlet {
 			.request(MediaType.APPLICATION_JSON)
 			.get(Pessoa.class);
 			
-			request.setAttribute("pessoa", pessoa);
+			request.setAttribute("atendente", pessoa);
 			
 			RequestDispatcher rd = getServletContext().
 					getRequestDispatcher("/pages/manterAtendentes.jsp");
@@ -86,7 +87,7 @@ public class Atendente extends HttpServlet {
 			.request(MediaType.APPLICATION_JSON)
 			.delete(Pessoa.class);
 			
-			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/tipo/"+"atendente")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
 			request.setAttribute("listaAtendente", listaPessoa);
@@ -98,7 +99,7 @@ public class Atendente extends HttpServlet {
 		
 		if(action.equals("inicio")){
 			Client client = ClientBuilder.newClient();
-			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/tipo/atendente")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
 			request.setAttribute("listaAtendente", listaPessoa);

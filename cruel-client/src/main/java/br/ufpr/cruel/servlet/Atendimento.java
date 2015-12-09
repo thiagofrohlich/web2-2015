@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -48,24 +49,22 @@ public class Atendimento extends HttpServlet {
 			br.ufpr.cruel.model.Atendimento atendimento = new br.ufpr.cruel.model.Atendimento();
 			
 			Client client = ClientBuilder.newClient();
+			String cliente = request.getParameter("cliente");
+			String split[] = cliente.split("-"); 
 
-			TipoCliente tipoCliente = client.target("http://localhost:8080/cruel-ws/TipoCliente/descricao"+request.getParameter("descricao"))
+			TipoCliente tipoCliente = client.target("http://localhost:8080/cruel-ws/TipoCliente/"+split[0])
 					.request(MediaType.APPLICATION_JSON)
 					.get(TipoCliente.class);
 			
-			try {
-				atendimento.setData(sdf.parse(request.getParameter("data")));
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+			atendimento.setData(Calendar.getInstance().getTime());
 			atendimento.setTipoCliente(tipoCliente);
 			atendimento.setValor(tipoCliente.getValorRefeicao());
 			
-			client.target("http://localhost:8080/cruel-ws/TipoCliente")
+			client.target("http://localhost:8080/cruel-ws/Atendimento")
 			.request(MediaType.APPLICATION_JSON)
-			.post(Entity.json(tipoCliente), br.ufpr.cruel.model.TipoCliente.class);
+			.post(Entity.json(atendimento), br.ufpr.cruel.model.TipoCliente.class);
 			
-			ListaAtendimento =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoCliente")
+			ListaAtendimento =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Atendimento")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
 			request.setAttribute("listaTipoCliente", ListaAtendimento);
@@ -78,7 +77,7 @@ public class Atendimento extends HttpServlet {
 		if(action.equals("edit")){
 			Integer id = Integer.parseInt(request.getParameter("id"));
 			Client client = ClientBuilder.newClient();
-			br.ufpr.cruel.model.Atendimento atendimento = client.target("http://localhost:8080/cruel-ws/Pessoa/"+id)
+			br.ufpr.cruel.model.Atendimento atendimento = client.target("http://localhost:8080/cruel-ws/Atendimento/"+id)
 			.request(MediaType.APPLICATION_JSON)
 			.get(br.ufpr.cruel.model.Atendimento.class);
 			
@@ -111,7 +110,7 @@ public class Atendimento extends HttpServlet {
 			ListaAtendimento =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoCliente")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
-			request.setAttribute("listaTipoCliente", ListaAtendimento);
+			request.setAttribute("listaCliente", ListaAtendimento);
 			
 			RequestDispatcher rd = getServletContext().
 					getRequestDispatcher("/pages/registrarAtendimento.jsp");
