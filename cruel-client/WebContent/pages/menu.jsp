@@ -13,7 +13,7 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                <li><a href="Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
             </ul>
             <!-- /.navbar-top-links -->
 
