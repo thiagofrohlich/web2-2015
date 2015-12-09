@@ -36,14 +36,17 @@ public class RefeicaoTransformer implements Transformer<Refeicao, br.ufpr.cruel.
 	@Override
 	public Refeicao transformToModel(br.ufpr.cruel.domain.Refeicao refeicao) {
 		Refeicao model = new Refeicao();
-		model.setId(refeicao.getId());
-		model.setTipoRefeicao(refeicao.getTipoRefeicao());
-		model.setIngrediente1(ingredienteTransformer.transformToModel(refeicao.getIngrediente1()));
-		model.setIngrediente2(ingredienteTransformer.transformToModel(refeicao.getIngrediente2()));
-		model.setIngrediente3(ingredienteTransformer.transformToModel(refeicao.getIngrediente3()));
-		model.setIngrediente4(ingredienteTransformer.transformToModel(refeicao.getIngrediente4()));
-		model.setIngrediente5(ingredienteTransformer.transformToModel(refeicao.getIngrediente5()));
-		model.setIngrediente6(ingredienteTransformer.transformToModel(refeicao.getIngrediente6()));
+		if(refeicao != null) {
+			model = new Refeicao();
+			model.setId(refeicao.getId());
+			model.setTipoRefeicao(refeicao.getTipoRefeicao());
+			model.setIngrediente1(ingredienteTransformer.transformToModel(refeicao.getIngrediente1()));
+			model.setIngrediente2(ingredienteTransformer.transformToModel(refeicao.getIngrediente2()));
+			model.setIngrediente3(ingredienteTransformer.transformToModel(refeicao.getIngrediente3()));
+			model.setIngrediente4(ingredienteTransformer.transformToModel(refeicao.getIngrediente4()));
+			model.setIngrediente5(ingredienteTransformer.transformToModel(refeicao.getIngrediente5()));
+			model.setIngrediente6(ingredienteTransformer.transformToModel(refeicao.getIngrediente6()));
+		}
 		return model;
 	}
 	

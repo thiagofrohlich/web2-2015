@@ -34,10 +34,13 @@ public class AtendimentoTransformer implements Transformer<Atendimento, br.ufpr.
 	@Override
 	public Atendimento transformToModel(br.ufpr.cruel.domain.Atendimento atendimento) {
 		Atendimento model = new Atendimento();
-		model.setId(atendimento.getId());
-		model.setData(atendimento.getData());
-		model.setTipoCliente(tipoClienteTransformer.transformToModel(atendimento.getTipoCliente()));
-		model.setValor(new BigDecimal(atendimento.getValor().doubleValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
+		if(atendimento != null) {
+			model = new Atendimento();
+			model.setId(atendimento.getId());
+			model.setData(atendimento.getData());
+			model.setTipoCliente(tipoClienteTransformer.transformToModel(atendimento.getTipoCliente()));
+			model.setValor(new BigDecimal(atendimento.getValor().doubleValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
+		}
 		return model;
 	}
 	

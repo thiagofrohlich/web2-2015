@@ -29,7 +29,7 @@ public class Login extends HttpServlet {
 		String email = req.getParameter("email");
 		String senha = req.getParameter("senha");
 		
-		if(email == null || senha == null) {
+		if(email == null || senha == null || "".equals(email.trim()) || "".equals(senha.trim())) {
 			message = "Todos os campos devem ser preenchidos!";
 			forwardToErrorPage(req, resp, message);
 		} 
@@ -62,6 +62,7 @@ public class Login extends HttpServlet {
 	private void forwardToErrorPage(HttpServletRequest req, HttpServletResponse resp, String message) throws ServletException, IOException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/pages/errorPage.jsp");
 		req.setAttribute("message", message);
+		resp.setCharacterEncoding("utf-8");
 		dispatcher.forward(req, resp);
 	}
 

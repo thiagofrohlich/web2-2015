@@ -27,10 +27,13 @@ public class TipoClienteTransformer implements Transformer<TipoCliente, br.ufpr.
 	 */
 	@Override
 	public TipoCliente transformToModel(br.ufpr.cruel.domain.TipoCliente tipoCliente) {
-		TipoCliente model = new TipoCliente();
-		model.setId(tipoCliente.getId());
-		model.setDescricao(tipoCliente.getDescricao());
-		model.setValorRefeicao(new BigDecimal(tipoCliente.getValorRefeicao().doubleValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
+		TipoCliente model = null;
+		if(tipoCliente != null) {
+			model = new TipoCliente();
+			model.setId(tipoCliente.getId());
+			model.setDescricao(tipoCliente.getDescricao());
+			model.setValorRefeicao(new BigDecimal(tipoCliente.getValorRefeicao().doubleValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
+		}
 		return model;
 	}
 	

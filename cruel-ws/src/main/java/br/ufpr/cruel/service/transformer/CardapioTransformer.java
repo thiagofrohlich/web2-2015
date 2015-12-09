@@ -32,10 +32,13 @@ public class CardapioTransformer implements Transformer<Cardapio, br.ufpr.cruel.
 	@Override
 	public Cardapio transformToModel(br.ufpr.cruel.domain.Cardapio cardapio) {
 		Cardapio model = new Cardapio();
-		model.setId(cardapio.getId());
-		model.setData(cardapio.getData());
-		model.setRefeicao1(refeicaoTransformer.transformToModel(cardapio.getRefeicao1()));
-		model.setRefeicao2(refeicaoTransformer.transformToModel(cardapio.getRefeicao2()));
+		if(cardapio != null) {
+			model = new Cardapio();
+			model.setId(cardapio.getId());
+			model.setData(cardapio.getData());
+			model.setRefeicao1(refeicaoTransformer.transformToModel(cardapio.getRefeicao1()));
+			model.setRefeicao2(refeicaoTransformer.transformToModel(cardapio.getRefeicao2()));
+		}
 		return model;
 	}
 	
