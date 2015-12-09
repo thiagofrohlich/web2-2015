@@ -56,7 +56,7 @@ public class Login extends HttpServlet {
 		resp.addCookie(cUsuarioId);
 		resp.addCookie(cTipoUsuario);
 		
-		getServletContext().getRequestDispatcher("/pages/inicialCliente.jsp").forward(req, resp);
+		resp.sendRedirect("inicialCliente.jsp");
 	}
 
 	private void forwardToErrorPage(HttpServletRequest req, HttpServletResponse resp, String message) throws ServletException, IOException {
