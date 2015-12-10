@@ -1,5 +1,7 @@
 package br.ufpr.cruel.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -55,10 +57,11 @@ public class CardapioService {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/between/{dataInicio}/{dataFim}")
-	public List<Cardapio> findByDataBetween(@PathParam("dataInicio") Date dataInicio, @PathParam("dataFim") Date dataFim) {
+	@Path("/between")
+	public List<Cardapio> findByDataBetween(@QueryParam("dataInicio") String dataInicio, @QueryParam("dataFim") String dataFim) throws ParseException {
 		dao.openCurrentSession();
-		List<br.ufpr.cruel.domain.Cardapio> result = dao.findBetweenData(dataInicio, dataFim);
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		List<br.ufpr.cruel.domain.Cardapio> result = dao.findBetweenData(format.parse(dataInicio), format.parse(dataFim));
 		dao.closeCurrentSession();
 		
 		return transformer.transformToModel( result );

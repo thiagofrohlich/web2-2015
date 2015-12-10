@@ -1,4 +1,3 @@
-<%@include file="check-auth.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CRUEL - In√≠cio</title>
+    <title>CRUEL - InÌcio</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -46,97 +45,12 @@
 
     <div id="wrapper">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">CRUEL</a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-                <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-            </ul>
-            <!-- /.navbar-top-links -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                                              
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Nutricionista<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="nutricionistaInicial.html">In√≠cio</a>
-                                </li>
-								<li>
-                                    <a href="cadastroCardapio.html">Cadastro de card√°pio</a>
-                                </li>
-                                <li>
-                                    <a href="manterIngredientes.html">Ingredientes</a>
-                                </li>
-								<li>
-                                    <a href="manterTipoIngrediente.html">Tipo de ingrediente</a>
-                                </li>
-								<li>
-                                    <a href="nutricionistaMes.html">Card√°pio m√™s a m√™s</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        
-                   
-                                              
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Gerente<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="manterAtendentes.html">Atendentes</a>
-                                </li>
-                                <li>
-                                    <a href="manterNutricionistas.html">Nutricionistas</a>
-                                </li>
-								<li>
-                                    <a href="tipoCliente.html">Tipo de Cliente</a>
-                                </li>
-								<li>
-                                    <a href="manterGerentes.html">Gerentes</a>
-                                </li>
-								<li>
-                                    <a href="relatorios.html">Relat√≥rios</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        
-                  
-                                              
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Atendente<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="registrarAtendimento.html">Registrar Cliente</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
+		<%@include file="menu.jsp" %>
 		
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">In√≠cio</h1>
+                    <h1 class="page-header">Card·pio da Semana</h1>
                 </div>
 				<div class="col-lg-12">
                    <table class="table table-striped table-bordered table-hover">
@@ -144,7 +58,7 @@
 							<tr>
 								<th>Domingo</th>
 								<th>Segunda</th>
-								<th>Ter√ßa</th>
+								<th>TerÁa</th>
 								<th>Quarta</th>
 								<th>Quinta</th>
 								<th>Sexta</th>
@@ -155,112 +69,112 @@
 								<td>
 									<table class="table">
 										<tr>
-											<td><h4>Almo√ßo</h4></td>
+											<td><h4>AlmoÁo</h4></td>
 										</tr>
 										<tr>
-											<td>${domingo.almoco.arroz}<br>${domingo.almoco.feijao}<br>${domingo.almoco.carne}<br>${domingo.almoco.salada}<br>${domingo.almoco.acompanhamento}</td>
+											<td>${domingo.refeicao1.ingrediente1.nome}<br>${domingo.refeicao1.ingrediente2.nome}<br>${domingo.refeicao1.ingrediente3.nome}<br>${domingo.refeicao1.ingrediente4.nome}<br>${domingo.refeicao1.ingrediente5.nome}<br>${domingo.refeicao1.ingrediente6.nome}</td>
 										</tr>
 										<tr>
 											<td><h4>Janta</h4></td>
 										</tr>
 										<tr>
-											<td>${domingo.janta.arroz}<br>${domingo.janta.feijao}<br>${domingo.janta.carne}<br>${domingo.janta.salada}<br>${domingo.janta.acompanhamento}</td>
+											<td>${domingo.refeicao2.ingrediente1.nome}<br>${domingo.refeicao2.ingrediente2.nome}<br>${domingo.refeicao2.ingrediente3.nome}<br>${domingo.refeicao2.ingrediente4.nome}<br>${domingo.refeicao2.ingrediente5.nome}<br>${domingo.refeicao2.ingrediente6.nome}</td>
 										</tr>
 									</table>
 								</td>
 								<td>
 									<table class="table">
 										<tr>
-											<td><h4>Almo√ßo</h4></td>
+											<td><h4>AlmoÁo</h4></td>
 										</tr>
 										<tr>
-											<td>${segunda.almoco.arroz}<br>${segunda.almoco.feijao}<br>${segunda.almoco.carne}<br>${segunda.almoco.salada}<br>${segunda.almoco.acompanhamento}</td>
+											<td>${segunda.refeicao1.ingrediente1.nome}<br>${segunda.refeicao1.ingrediente2.nome}<br>${segunda.refeicao1.ingrediente3.nome}<br>${segunda.refeicao1.ingrediente4.nome}<br>${segunda.refeicao1.ingrediente5.nome}<br>${segunda.refeicao1.ingrediente6.nome}</td>
 										</tr>
 										<tr>
 											<td><h4>Janta</h4></td>
 										</tr>
 										<tr>
-											<td>${segunda.janta.arroz}<br>${segunda.janta.feijao}<br>${segunda.janta.carne}<br>${segunda.janta.salada}<br>${segunda.janta.acompanhamento}</td>
+											<td>${segunda.refeicao1.ingrediente1.nome}<br>${segunda.refeicao1.ingrediente2.nome}<br>${segunda.refeicao1.ingrediente3.nome}<br>${segunda.refeicao1.ingrediente4.nome}<br>${segunda.refeicao1.ingrediente5.nome}<br>${segunda.refeicao1.ingrediente6.nome}</td>
 										</tr>
 									</table>
 								</td>
 								<td>
 									<table class="table">
 										<tr>
-											<td><h4>Almo√ßo</h4></td>
+											<td><h4>AlmoÁo</h4></td>
 										</tr>
 										<tr>
-											<td>${terca.almoco.arroz}<br>${terca.almoco.feijao}<br>${terca.almoco.carne}<br>${terca.almoco.salada}<br>${terca.almoco.acompanhamento}</td>
+											<td>${terca.refeicao1.ingrediente1.nome}<br>${terca.refeicao1.ingrediente2.nome}<br>${terca.refeicao1.ingrediente3.nome}<br>${terca.refeicao1.ingrediente4.nome}<br>${terca.refeicao1.ingrediente5.nome}<br>${terca.refeicao1.ingrediente6.nome}</td>
 										</tr>
 										<tr>
 											<td><h4>Janta</h4></td>
 										</tr>
 										<tr>
-											<td>${terca.janta.arroz}<br>${terca.janta.feijao}<br>${terca.janta.carne}<br>${terca.janta.salada}<br>${terca.janta.acompanhamento}</td>
+											<td>${terca.refeicao1.ingrediente1.nome}<br>${terca.refeicao1.ingrediente2.nome}<br>${terca.refeicao1.ingrediente3.nome}<br>${terca.refeicao1.ingrediente4.nome}<br>${terca.refeicao1.ingrediente5.nome}<br>${terca.refeicao1.ingrediente6.nome}</td>
 										</tr>
 									</table>
 								</td>
 								<td>
 									<table class="table">
 										<tr>
-											<td><h4>Almo√ßo</h4></td>
+											<td><h4>AlmoÁo</h4></td>
 										</tr>
 										<tr>
-											<td>${quarta.almoco.arroz}<br>${quarta.almoco.feijao}<br>${quarta.almoco.carne}<br>${quarta.almoco.salada}<br>${quarta.almoco.acompanhamento}</td>
+											<td>${quarta.refeicao1.ingrediente1.nome}<br>${quarta.refeicao1.ingrediente2.nome}<br>${quarta.refeicao1.ingrediente3.nome}<br>${quarta.refeicao1.ingrediente4.nome}<br>${quarta.refeicao1.ingrediente5.nome}<br>${quarta.refeicao1.ingrediente6.nome}</td>
 										</tr>
 										<tr>
 											<td><h4>Janta</h4></td>
 										</tr>
 										<tr>
-											<td>${quarta.janta.arroz}<br>${quarta.janta.feijao}<br>${quarta.janta.carne}<br>${quarta.janta.salada}<br>${quarta.janta.acompanhamento}</td>
+											<td>${quarta.refeicao1.ingrediente1.nome}<br>${quarta.refeicao1.ingrediente2.nome}<br>${quarta.refeicao1.ingrediente3.nome}<br>${quarta.refeicao1.ingrediente4.nome}<br>${quarta.refeicao1.ingrediente5.nome}<br>${quarta.refeicao1.ingrediente6.nome}</td>
 										</tr>
 									</table>
 								</td>
 								<td>
 									<table class="table">
 										<tr>
-											<td><h4>Almo√ßo</h4></td>
+											<td><h4>AlmoÁo</h4></td>
 										</tr>
 										<tr>
-											<td>${quinta.almoco.arroz}<br>${quinta.almoco.feijao}<br>${quinta.almoco.carne}<br>${quinta.almoco.salada}<br>${quinta.almoco.acompanhamento}</td>
+											<td>${quinta.refeicao1.ingrediente1.nome}<br>${quinta.refeicao1.ingrediente2.nome}<br>${quinta.refeicao1.ingrediente3.nome}<br>${quinta.refeicao1.ingrediente4.nome}<br>${quinta.refeicao1.ingrediente5.nome}<br>${quinta.refeicao1.ingrediente6.nome}</td>
 										</tr>
 										<tr>
 											<td><h4>Janta</h4></td>
 										</tr>
 										<tr>
-											<td>${quinta.janta.arroz}<br>${quinta.janta.feijao}<br>${quinta.janta.carne}<br>${quinta.janta.salada}<br>${quinta.janta.acompanhamento}</td>
+											<td>${quinta.refeicao1.ingrediente1.nome}<br>${quinta.refeicao1.ingrediente2.nome}<br>${quinta.refeicao1.ingrediente3.nome}<br>${quinta.refeicao1.ingrediente4.nome}<br>${quinta.refeicao1.ingrediente5.nome}<br>${quinta.refeicao1.ingrediente6.nome}</td>
 										</tr>
 									</table>
 								</td>
 								<td>
 									<table class="table">
 										<tr>
-											<td><h4>Almo√ßo</h4></td>
+											<td><h4>AlmoÁo</h4></td>
 										</tr>
 										<tr>
-											<td>${sexta.almoco.arroz}<br>${sexta.almoco.feijao}<br>${sexta.almoco.carne}<br>${sexta.almoco.salada}<br>${sexta.almoco.acompanhamento}</td>
+											<td>${sexta.refeicao1.ingrediente1.nome}<br>${sexta.refeicao1.ingrediente2.nome}<br>${sexta.refeicao1.ingrediente3.nome}<br>${sexta.refeicao1.ingrediente4.nome}<br>${sexta.refeicao1.ingrediente5.nome}<br>${sexta.refeicao1.ingrediente6.nome}</td>
 										</tr>
 										<tr>
 											<td><h4>Janta</h4></td>
 										</tr>
 										<tr>
-											<td>${sexta.janta.arroz}<br>${sexta.janta.feijao}<br>${sexta.janta.carne}<br>${sexta.janta.salada}<br>${sexta.janta.acompanhamento}</td>
+											<td>${sexta.refeicao1.ingrediente1.nome}<br>${sexta.refeicao1.ingrediente2.nome}<br>${sexta.refeicao1.ingrediente3.nome}<br>${sexta.refeicao1.ingrediente4.nome}<br>${sexta.refeicao1.ingrediente5.nome}<br>${sexta.refeicao1.ingrediente6.nome}</td>
 										</tr>
 									</table>
 								</td>
 								<td>
 									<table class="table">
 										<tr>
-											<td><h4>Almo√ßo</h4></td>
+											<td><h4>AlmoÁo</h4></td>
 										</tr>
 										<tr>
-											<td>${sabado.almoco.arroz}<br>${sabado.almoco.feijao}<br>${sabado.almoco.carne}<br>${sabado.almoco.salada}<br>${sabado.almoco.acompanhamento}</td>
+											<td>${sabado.refeicao1.ingrediente1.nome}<br>${sabado.refeicao1.ingrediente2.nome}<br>${sabado.refeicao1.ingrediente3.nome}<br>${sabado.refeicao1.ingrediente4.nome}<br>${sabado.refeicao1.ingrediente5.nome}<br>${sabado.refeicao1.ingrediente6.nome}</td>
 										</tr>
 										<tr>
 											<td><h4>Janta</h4></td>
 										</tr>
 										<tr>
-											<td>${sabado.janta.arroz}<br>${sabado.janta.feijao}<br>${sabado.janta.carne}<br>${sabado.janta.salada}<br>${sabado.janta.acompanhamento}</td>
+											<td>${sabado.refeicao1.ingrediente1.nome}<br>${sabado.refeicao1.ingrediente2.nome}<br>${sabado.refeicao1.ingrediente3.nome}<br>${sabado.refeicao1.ingrediente4.nome}<br>${sabado.refeicao1.ingrediente5.nome}<br>${sabado.refeicao1.ingrediente6.nome}</td>
 										</tr>
 									</table>
 								</td>

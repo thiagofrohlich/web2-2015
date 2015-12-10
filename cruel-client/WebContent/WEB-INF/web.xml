@@ -89,4 +89,12 @@
     <servlet-name>logout</servlet-name>
     <url-pattern>/pages/Logout</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>inicialCliente</servlet-name>
+    <servlet-class>br.ufpr.cruel.servlet.InicialCliente</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>inicialCliente</servlet-name>
+    <url-pattern>/pages/InicialCliente</url-pattern>
+  </servlet-mapping>
 </web-app>
