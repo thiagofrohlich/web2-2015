@@ -14,7 +14,12 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                <li><a href="Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+            	<c:if test="${cookie.usuario == null}">
+                	<li><a href="login.jsp"><i class="fa fa-sign-out fa-fw"></i> Login</a></li>
+                </c:if>
+            	<c:if test="${cookie.usuario != null}">
+                	<li><a href="Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                </c:if>
             </ul>
             <!-- /.navbar-top-links -->
 
