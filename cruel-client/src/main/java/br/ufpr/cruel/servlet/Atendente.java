@@ -49,9 +49,9 @@ public class Atendente extends HttpServlet {
 			atendente.setTelefone(request.getParameter("telefone"));
 			atendente.setSenha(request.getParameter("senha"));
 			atendente.setEndereco(request.getParameter("endereco"));
-			atendente.setTipoPessoa("atendente");
+			atendente.setTipoPessoa("ATENDENTE");
 			
-			if(request.getParameter("id") != null){
+			if(request.getParameter("id") != null && !request.getParameter("id").equals("")){
 				atendente.setId(Integer.parseInt(request.getParameter("id")));
 			}
 			
@@ -99,7 +99,7 @@ public class Atendente extends HttpServlet {
 			.request(MediaType.APPLICATION_JSON)
 			.delete(Pessoa.class);
 			
-			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/tipo/"+"atendente")
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/tipo/"+"ATENDENTE")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
 			request.setAttribute("listaAtendente", listaPessoa);
@@ -111,7 +111,7 @@ public class Atendente extends HttpServlet {
 		
 		if(action.equals("inicio")){
 			Client client = ClientBuilder.newClient();
-			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/tipo/atendente")
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/tipo/ATENDENTE")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
 			request.setAttribute("listaAtendente", listaPessoa);

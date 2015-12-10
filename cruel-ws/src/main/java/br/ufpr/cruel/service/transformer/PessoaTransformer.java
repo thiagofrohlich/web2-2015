@@ -39,6 +39,7 @@ public class PessoaTransformer implements Transformer<Pessoa, br.ufpr.cruel.doma
 		if(pessoa != null) {
 			model = new Pessoa();
 			model.setId(pessoa.getId());
+			model.setCpf(pessoa.getCpf());
 			model.setCrn(pessoa.getCrn());
 			model.setEmail(pessoa.getEmail());
 			model.setEndereco(pessoa.getEndereco());
