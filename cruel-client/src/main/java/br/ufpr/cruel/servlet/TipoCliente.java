@@ -46,7 +46,7 @@ public class TipoCliente extends HttpServlet {
 			tipoCliente.setDescricao(request.getParameter("descricao"));
 			tipoCliente.setValorRefeicao(new BigDecimal(request.getParameter("valor")));
 			
-			if(request.getParameter("id") != null){
+			if(request.getParameter("id") != null && !request.getParameter("id").equals("")){
 				tipoCliente.setId(Integer.parseInt(request.getParameter("id")));
 			}
 			

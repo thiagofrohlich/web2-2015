@@ -119,7 +119,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form role="form" action="TipoCliente?action=salva" method="post">
-                                    <input type="hidden" value="${tipoCliente.id}">
+                                    <input type="hidden" name="id" value="${tipoCliente.id}">
                                         <div class="form-group">
                                             <label class="control-label" for="descricao">Descrição</label>
                                             <input id="codigo" name="descricao" class="form-control no-blank"  value="${tipoCliente.descricao}"/>
