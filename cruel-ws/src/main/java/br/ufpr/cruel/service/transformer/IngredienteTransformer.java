@@ -18,7 +18,7 @@ public class IngredienteTransformer implements Transformer<Ingrediente, br.ufpr.
 	@Override
 	public br.ufpr.cruel.domain.Ingrediente transformToDomain(Ingrediente model) {
 		br.ufpr.cruel.domain.Ingrediente domain = new br.ufpr.cruel.domain.Ingrediente();
-		if(model.getId() == null) {
+		if(model.getId() != null) {
 			domain.setId(model.getId());
 		}
 		domain.setNome(model.getNome());

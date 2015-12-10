@@ -28,7 +28,7 @@ public class Atendimento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	
-	private List<Pessoa> ListaAtendimento = new ArrayList<>();
+	private List<br.ufpr.cruel.model.Atendimento> ListaAtendimento = new ArrayList<>();
 	 
     public Atendimento() {
         super();
@@ -48,10 +48,13 @@ public class Atendimento extends HttpServlet {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			br.ufpr.cruel.model.Atendimento atendimento = new br.ufpr.cruel.model.Atendimento();
 			
+			if(request.getParameter("id") != null){
+				atendimento.setId(Integer.parseInt(request.getParameter("id")));
+			}
 			Client client = ClientBuilder.newClient();
 			String cliente = request.getParameter("cliente");
 			String split[] = cliente.split("-"); 
-
+			
 			TipoCliente tipoCliente = client.target("http://localhost:8080/cruel-ws/TipoCliente/"+split[0])
 					.request(MediaType.APPLICATION_JSON)
 					.get(TipoCliente.class);
@@ -60,14 +63,20 @@ public class Atendimento extends HttpServlet {
 			atendimento.setTipoCliente(tipoCliente);
 			atendimento.setValor(tipoCliente.getValorRefeicao());
 			
-			client.target("http://localhost:8080/cruel-ws/Atendimento")
-			.request(MediaType.APPLICATION_JSON)
-			.post(Entity.json(atendimento), br.ufpr.cruel.model.TipoCliente.class);
+			if(atendimento.getId() != null){
+				client.target("http://localhost:8080/cruel-ws/Atendimento")
+				.request(MediaType.APPLICATION_JSON)
+				.put(Entity.json(atendimento), br.ufpr.cruel.model.TipoCliente.class);
+			}else{
+				client.target("http://localhost:8080/cruel-ws/Atendimento")
+				.request(MediaType.APPLICATION_JSON)
+				.post(Entity.json(atendimento), br.ufpr.cruel.model.TipoCliente.class);
+			}
 			
-			ListaAtendimento =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Atendimento")
+			ListaAtendimento =  (List<br.ufpr.cruel.model.Atendimento>) client.target("http://localhost:8080/cruel-ws/Atendimento")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
-			request.setAttribute("listaTipoCliente", ListaAtendimento);
+			request.setAttribute("listaAtendimento", ListaAtendimento);
 			
 			RequestDispatcher rd = getServletContext().
 					getRequestDispatcher("/pages/registrarAtendimento.jsp");
@@ -81,7 +90,11 @@ public class Atendimento extends HttpServlet {
 			.request(MediaType.APPLICATION_JSON)
 			.get(br.ufpr.cruel.model.Atendimento.class);
 			
-			request.setAttribute("pessoa", atendimento);
+			request.setAttribute("atendimento", atendimento);
+			ListaAtendimento =  (List<br.ufpr.cruel.model.Atendimento>) client.target("http://localhost:8080/cruel-ws/TipoCliente")
+					.request(MediaType.APPLICATION_JSON)
+					.get(ArrayList.class);
+			request.setAttribute("listaCliente", ListaAtendimento);
 			
 			RequestDispatcher rd = getServletContext().
 					getRequestDispatcher("/pages/registrarAtendimento.jsp");
@@ -95,10 +108,10 @@ public class Atendimento extends HttpServlet {
 			.request(MediaType.APPLICATION_JSON)
 			.delete(br.ufpr.cruel.model.Atendimento.class);
 			
-			ListaAtendimento =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoCliente")
+			ListaAtendimento =  (List<br.ufpr.cruel.model.Atendimento>) client.target("http://localhost:8080/cruel-ws/TipoCliente")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
-			request.setAttribute("listaTipoCliente", ListaAtendimento);
+			request.setAttribute("listaAtendimento", ListaAtendimento);
 			
 			RequestDispatcher rd = getServletContext().
 					getRequestDispatcher("/pages/registrarAtendimento.jsp");
@@ -107,10 +120,15 @@ public class Atendimento extends HttpServlet {
 		
 		if(action.equals("inicio")){
 			Client client = ClientBuilder.newClient();
-			ListaAtendimento =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/TipoCliente")
+			ListaAtendimento =  (List<br.ufpr.cruel.model.Atendimento>) client.target("http://localhost:8080/cruel-ws/TipoCliente")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
 			request.setAttribute("listaCliente", ListaAtendimento);
+			
+			ListaAtendimento =  (List<br.ufpr.cruel.model.Atendimento>) client.target("http://localhost:8080/cruel-ws/Atendimento")
+					.request(MediaType.APPLICATION_JSON)
+					.get(ArrayList.class);
+			request.setAttribute("listaAtendimento", ListaAtendimento);
 			
 			RequestDispatcher rd = getServletContext().
 					getRequestDispatcher("/pages/registrarAtendimento.jsp");

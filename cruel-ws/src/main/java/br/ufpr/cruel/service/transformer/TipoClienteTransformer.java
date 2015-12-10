@@ -14,7 +14,7 @@ public class TipoClienteTransformer implements Transformer<TipoCliente, br.ufpr.
 	@Override
 	public br.ufpr.cruel.domain.TipoCliente transformToDomain(TipoCliente model) {
 		br.ufpr.cruel.domain.TipoCliente domain = new br.ufpr.cruel.domain.TipoCliente();
-		if(model.getId() == null) {
+		if(model.getId() != null) {
 			domain.setId(model.getId());
 		}
 		domain.setDescricao(model.getDescricao());

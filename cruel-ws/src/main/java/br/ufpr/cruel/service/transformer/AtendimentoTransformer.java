@@ -19,7 +19,7 @@ public class AtendimentoTransformer implements Transformer<Atendimento, br.ufpr.
 	@Override
 	public br.ufpr.cruel.domain.Atendimento transformToDomain(Atendimento model) {
 		br.ufpr.cruel.domain.Atendimento domain = new br.ufpr.cruel.domain.Atendimento();
-		if(model.getId() == null) {
+		if(model.getId() != null) {
 			domain.setId(model.getId());
 		}
 		domain.setData(model.getData());

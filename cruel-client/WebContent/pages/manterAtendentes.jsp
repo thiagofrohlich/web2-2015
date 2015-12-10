@@ -125,6 +125,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form role="form" action="Atendente?action=salva" method="post">
+                                    <input type="hidden" value="${atendete.id}">
                                         <div class="form-group">
                                             <label class="control-label" for="nome">Nome</label>
                                             <input id="nome" name="nome" class="form-control no-blank" value="${atendente.nome}"/>

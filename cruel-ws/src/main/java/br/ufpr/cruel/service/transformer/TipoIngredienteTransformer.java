@@ -13,7 +13,7 @@ public class TipoIngredienteTransformer implements Transformer<TipoIngrediente, 
 	@Override
 	public br.ufpr.cruel.domain.TipoIngrediente transformToDomain(TipoIngrediente model) {
 		br.ufpr.cruel.domain.TipoIngrediente domain = new br.ufpr.cruel.domain.TipoIngrediente();
-		if(model.getId() == null) {
+		if(model.getId() != null) {
 			domain.setId(model.getId());
 		}
 		domain.setNome(model.getNome());

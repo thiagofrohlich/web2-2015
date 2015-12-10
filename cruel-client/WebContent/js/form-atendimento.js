@@ -16,7 +16,7 @@ $(document).ready(function() {
 		tr = $(this).parent().parent(); //5
 		td = $(tr).children().eq(0);
 		
-		parameters += $.trim(td);
+		parameters += $.trim($(td).text());
 		url = window.location.href;
 		if(url.indexOf('?') >= 0) {
 			url = url.substring(0, url.indexOf('?'));

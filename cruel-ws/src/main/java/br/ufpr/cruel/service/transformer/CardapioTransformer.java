@@ -17,7 +17,7 @@ public class CardapioTransformer implements Transformer<Cardapio, br.ufpr.cruel.
 	@Override
 	public br.ufpr.cruel.domain.Cardapio transformToDomain(Cardapio model) {
 		br.ufpr.cruel.domain.Cardapio domain = new br.ufpr.cruel.domain.Cardapio();
-		if(model.getId() == null) {
+		if(model.getId() != null) {
 			domain.setId(model.getId());
 		}
 		domain.setData(model.getData());

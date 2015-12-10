@@ -47,10 +47,22 @@ public class TipoIngrediente extends HttpServlet {
 			br.ufpr.cruel.model.TipoIngrediente tipo = new br.ufpr.cruel.model.TipoIngrediente();
 			tipo.setNome(request.getParameter("nome"));
 			
+			if(request.getParameter("id") != null){
+				tipo.setId(Integer.parseInt(request.getParameter("id")));
+			}
+			
 			Client client = ClientBuilder.newClient();
-			client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
-			.request(MediaType.APPLICATION_JSON)
-			.post(Entity.json(tipo), br.ufpr.cruel.model.TipoIngrediente.class);
+			
+			if(tipo.getId() != null){
+				client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+				.request(MediaType.APPLICATION_JSON)
+				.put(Entity.json(tipo), br.ufpr.cruel.model.TipoIngrediente.class);
+			}else{
+				client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+				.request(MediaType.APPLICATION_JSON)
+				.post(Entity.json(tipo), br.ufpr.cruel.model.TipoIngrediente.class);
+			}
+			
 			
 			listatipoIngrediente =  (List<br.ufpr.cruel.model.TipoIngrediente>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
 					.request(MediaType.APPLICATION_JSON)
