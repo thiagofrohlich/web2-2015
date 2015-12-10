@@ -1,5 +1,9 @@
 package br.ufpr.cruel.service;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -99,9 +103,9 @@ public class PessoaService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/usuario")
-	public Pessoa findUser(@QueryParam("email") String email, @QueryParam("senha") String senha) {
+	public Pessoa findUser(@QueryParam("email") String email, @QueryParam("senha") String senha) throws UnsupportedEncodingException, GeneralSecurityException {
 		dao.openCurrentSession();
-		br.ufpr.cruel.domain.Pessoa result = dao.findByEmailAndSenha(email, senha);
+		br.ufpr.cruel.domain.Pessoa result = dao.findByEmailAndSenha(email, encrypt(senha));
 		dao.closeCurrentSession();
 		
 		return transformer.transformToModel( result );
@@ -110,14 +114,16 @@ public class PessoaService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void create(Pessoa model) {
+	public void create(Pessoa model) throws UnsupportedEncodingException, GeneralSecurityException {
+		model.setSenha(encrypt(model.getSenha()));
 		persistDb( transformer.transformToDomain(model) );
 	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void update(Pessoa model) {
+	public void update(Pessoa model) throws UnsupportedEncodingException, GeneralSecurityException {
+		model.setSenha(encrypt(model.getSenha()));
 		updateDb( transformer.transformToDomain(model) );
 	}
 	
@@ -163,4 +169,30 @@ public class PessoaService {
 		dao.closeCurrentSession();
 	}
 
+	private static String encrypt(String passwordToHash) throws GeneralSecurityException, UnsupportedEncodingException {
+        String generatedPassword = null;
+        try {
+            // Create MessageDigest instance for MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            //Add password bytes to digest
+            md.update(passwordToHash.getBytes());
+            //Get the hash's bytes
+            byte[] bytes = md.digest();
+            //This bytes[] has bytes in decimal format;
+            //Convert it to hexadecimal format
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++)
+            {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            //Get complete hashed password in hex format
+            generatedPassword = sb.toString();
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+        return generatedPassword;
+    }
+	
 }
