@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 		 <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -20,7 +21,7 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                                              
+                    <c:if test="${cookie.tipoUsuario.value == 'NUTRICIONISTA'}">
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Nutricionista<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -42,9 +43,9 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        
+                    </c:if>
                    
-                                              
+                    <c:if test="${cookie.tipoUsuario.value == 'GERENTE'}">                   
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Gerente<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -66,9 +67,9 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        
+                    </c:if>
                   
-                                              
+                  	<c:if test="${cookie.tipoUsuario.value == 'ATENDENTE'}">
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Atendente<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -78,6 +79,7 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+					</c:if>		                            
                         
                     </ul>
                 </div>
