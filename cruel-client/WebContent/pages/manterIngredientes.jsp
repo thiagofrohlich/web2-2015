@@ -65,12 +65,12 @@
                                         <tr>
                                             <th>Tipo</th>
                                             <th>Nome</th>
-                                            <th>DescriÃ§Ã£o</th>
+                                            <th>Descrição</th>
                                             
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="lstIngred" items="${ingrediente}">
+                                        <c:forEach var="lstIngred" items="${listaIngrediente}">
 	                                        <tr class="odd gradeX">
 	                                            <td class="hide">${lstIngred.id}</td>
 	                                            <td>${lstIngred.tipoIngrediente.nome}</td>
@@ -105,6 +105,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form role="form" action="Ingrediente?action=salva" method="post">
+                                    <input type="hidden" value="${ingrediente.id}">
                                         <div class="form-group">
                                             <label class="control-label" for="tipo">Tipo</label>
                                             <select class="form-control" id="tipo" name="tipo" >
@@ -115,11 +116,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="nome">Nome</label>
-                                            <input id="nome" class="form-control no-blank" value="${ingrediente.nome}">
+                                            <input id="nome" class="form-control no-blank" name="nome" value="${ingrediente.nome}">
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="descricao">Descrição</label>
-                                            <textarea class="form-control no-blank" rows="3" id="descricao"  >${ingrediente.descricao}</textarea>
+                                            <textarea class="form-control no-blank" rows="3" id="descricao" name="descricao" >${ingrediente.descricao}</textarea>
                                         </div>
 										<button type="submit" class="btn btn-default">Salvar</button>
                                         <button id="reset-button" type="reset" class="btn btn-default">Cancelar</button>

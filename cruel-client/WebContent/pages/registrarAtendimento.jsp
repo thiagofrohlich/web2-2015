@@ -83,14 +83,14 @@
                                             <th>Categoria</th>
                                             <th>Data</th>
                                             <th>Valor</th>
-                                            <th>AÃ§Ãµes</th>
+                                            <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <c:forEach var="lstAtendimento" items="${listaAtendimento}">
 	                                        <tr class="odd gradeX">
 	                                            <td class="hide">${lstAtendimento.id}</td>
-	                                            <td>${lstAtendimento.categoria}</td>
+	                                            <td>${lstAtendimento.tipoCliente.descricao}</td>
 	                                            <td>${lstAtendimento.data}</td>
 	                                            <td>${lstAtendimento.valor}</td>
 	                                            <td class="center">
@@ -122,10 +122,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form role="form" action="Atendimento?action=salva" method="post">
-                                        <div class="form-group">
-                                            <label class="control-label" for="categoria">Categoria</label>
-                                            <input id="categoria" name="categoria" class="form-control no-blank" value="${atendimento.categoria}"/>
-                                        </div>
+                                        <input type="hidden" value="${atendimento.id}" name="id">
                                         <div class="form-group">
                                             <label class="control-label" for="data">Data</label>
                                             <jsp:useBean id="today" class="java.util.Date" />
@@ -135,7 +132,7 @@
                                             <label class="control-label" for="cliente">Cliente</label>
                                             <select class="form-control" id="cliente" name="cliente">
 												<c:forEach var="cliente" items="${listaCliente}">
-													<option>${cliente.id}-${cliente.descricao}</option>
+													<option>${cliente.id}-${cliente.descricao} Valor: ${cliente.valorRefeicao}</option>
 												</c:forEach>
 											</select>
                                         </div>

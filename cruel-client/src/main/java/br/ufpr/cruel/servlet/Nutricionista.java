@@ -53,10 +53,21 @@ public class Nutricionista extends HttpServlet {
 			nutricionista.setCrn(request.getParameter("crn"));
 			nutricionista.setTipoPessoa("nutricionista");
 			
+			if(request.getParameter("id") != null){
+				nutricionista.setId(Integer.parseInt(request.getParameter("id")));
+			}
+			
 			Client client = ClientBuilder.newClient();
-			client.target("http://localhost:8080/cruel-ws/Pessoa")
-			.request(MediaType.APPLICATION_JSON)
-			.post(Entity.json(nutricionista), br.ufpr.cruel.model.Pessoa.class);
+			
+			if(nutricionista.getId() != null){
+				client.target("http://localhost:8080/cruel-ws/Pessoa")
+				.request(MediaType.APPLICATION_JSON)
+				.put(Entity.json(nutricionista), br.ufpr.cruel.model.Pessoa.class);
+			}else{
+				client.target("http://localhost:8080/cruel-ws/Pessoa")
+				.request(MediaType.APPLICATION_JSON)
+				.post(Entity.json(nutricionista), br.ufpr.cruel.model.Pessoa.class);
+			}
 			
 			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/tipo/nutricionista")
 					.request(MediaType.APPLICATION_JSON)

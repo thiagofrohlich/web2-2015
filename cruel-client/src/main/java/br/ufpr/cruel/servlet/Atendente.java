@@ -51,10 +51,22 @@ public class Atendente extends HttpServlet {
 			atendente.setEndereco(request.getParameter("endereco"));
 			atendente.setTipoPessoa("atendente");
 			
+			if(request.getParameter("id") != null){
+				atendente.setId(Integer.parseInt(request.getParameter("id")));
+			}
+			
 			Client client = ClientBuilder.newClient();
-			client.target("http://localhost:8080/cruel-ws/Pessoa")
-			.request(MediaType.APPLICATION_JSON)
-			.post(Entity.json(atendente), br.ufpr.cruel.model.Pessoa.class);
+
+			if(atendente.getId() != null){
+				client.target("http://localhost:8080/cruel-ws/Pessoa")
+				.request(MediaType.APPLICATION_JSON)
+				.put(Entity.json(atendente), br.ufpr.cruel.model.Pessoa.class);
+			}else{
+				client.target("http://localhost:8080/cruel-ws/Pessoa")
+				.request(MediaType.APPLICATION_JSON)
+				.post(Entity.json(atendente), br.ufpr.cruel.model.Pessoa.class);
+			}
+			
 			
 			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/tipo/"+atendente.getTipoPessoa())
 					.request(MediaType.APPLICATION_JSON)

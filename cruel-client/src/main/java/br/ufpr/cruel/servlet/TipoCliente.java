@@ -46,10 +46,22 @@ public class TipoCliente extends HttpServlet {
 			tipoCliente.setDescricao(request.getParameter("descricao"));
 			tipoCliente.setValorRefeicao(new BigDecimal(request.getParameter("valor")));
 			
+			if(request.getParameter("id") != null){
+				tipoCliente.setId(Integer.parseInt(request.getParameter("id")));
+			}
+			
 			Client client = ClientBuilder.newClient();
-			client.target("http://localhost:8080/cruel-ws/TipoCliente")
-			.request(MediaType.APPLICATION_JSON)
-			.post(Entity.json(tipoCliente),br.ufpr.cruel.model.TipoCliente.class);
+			
+			if(tipoCliente.getId() != null){
+				client.target("http://localhost:8080/cruel-ws/TipoCliente")
+				.request(MediaType.APPLICATION_JSON)
+				.put(Entity.json(tipoCliente),br.ufpr.cruel.model.TipoCliente.class);
+			}else{
+				client.target("http://localhost:8080/cruel-ws/TipoCliente")
+				.request(MediaType.APPLICATION_JSON)
+				.post(Entity.json(tipoCliente),br.ufpr.cruel.model.TipoCliente.class);
+			}
+			
 			
 			listaCliente =  (List<TipoCliente>) client.target("http://localhost:8080/cruel-ws/TipoCliente")
 					.request(MediaType.APPLICATION_JSON)

@@ -52,9 +52,20 @@ public class Ingrediente extends HttpServlet {
 					.request(MediaType.APPLICATION_JSON)
 					.get(br.ufpr.cruel.model.TipoIngrediente.class));
 			
-			client.target("http://localhost:8080/cruel-ws/Ingrediente")
-			.request(MediaType.APPLICATION_JSON)
-			.post(Entity.json(ingrediente), br.ufpr.cruel.model.Ingrediente.class);
+			if(request.getParameter("id") != null){
+				ingrediente.setId(Integer.parseInt(request.getParameter("id")));
+			}
+			
+			if(ingrediente.getId() != null){
+				client.target("http://localhost:8080/cruel-ws/Ingrediente")
+				.request(MediaType.APPLICATION_JSON)
+				.put(Entity.json(ingrediente), br.ufpr.cruel.model.Ingrediente.class);
+			}else{
+				client.target("http://localhost:8080/cruel-ws/Ingrediente")
+				.request(MediaType.APPLICATION_JSON)
+				.post(Entity.json(ingrediente), br.ufpr.cruel.model.Ingrediente.class);
+			}
+			
 			
 			listaIngrediente =  (List<br.ufpr.cruel.model.Ingrediente>) client.target("http://localhost:8080/cruel-ws/Ingrediente")
 					.request(MediaType.APPLICATION_JSON)
@@ -69,11 +80,16 @@ public class Ingrediente extends HttpServlet {
 		if(action.equals("edit")){
 			Integer id = Integer.parseInt(request.getParameter("id"));
 			Client client = ClientBuilder.newClient();
-			Ingrediente ingrediente = client.target("http://localhost:8080/cruel-ws/Ingrediente/"+id)
+			br.ufpr.cruel.model.Ingrediente ingrediente = client.target("http://localhost:8080/cruel-ws/Ingrediente/"+id)
 			.request(MediaType.APPLICATION_JSON)
-			.get(Ingrediente.class);
+			.get(br.ufpr.cruel.model.Ingrediente.class);
 			
 			request.setAttribute("ingrediente", ingrediente);
+			
+			List<TipoIngrediente> listatipoIngrediente =  (List<br.ufpr.cruel.model.TipoIngrediente>) client.target("http://localhost:8080/cruel-ws/TipoIngrediente")
+					.request(MediaType.APPLICATION_JSON)
+					.get(ArrayList.class);
+			request.setAttribute("tipo", listatipoIngrediente);
 			
 			RequestDispatcher rd = getServletContext().
 					getRequestDispatcher("/pages/manterIngredientes.jsp");
@@ -85,7 +101,7 @@ public class Ingrediente extends HttpServlet {
 			Client client = ClientBuilder.newClient();
 			client.target("http://localhost:8080/cruel-ws/Ingrediente/"+id)
 			.request(MediaType.APPLICATION_JSON)
-			.delete(Ingrediente.class);
+			.delete(br.ufpr.cruel.model.Ingrediente.class);
 			
 			listaIngrediente =  (List<br.ufpr.cruel.model.Ingrediente>) client.target("http://localhost:8080/cruel-ws/Ingrediente")
 					.request(MediaType.APPLICATION_JSON)

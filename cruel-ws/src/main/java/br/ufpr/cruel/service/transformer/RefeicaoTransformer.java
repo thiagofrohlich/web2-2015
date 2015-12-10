@@ -17,7 +17,7 @@ public class RefeicaoTransformer implements Transformer<Refeicao, br.ufpr.cruel.
 	@Override
 	public br.ufpr.cruel.domain.Refeicao transformToDomain(Refeicao model) {
 		br.ufpr.cruel.domain.Refeicao domain = new br.ufpr.cruel.domain.Refeicao();
-		if(model.getId() == null) {
+		if(model.getId() != null) {
 			domain.setId(model.getId());
 		}
 		domain.setTipoRefeicao(model.getTipoRefeicao());

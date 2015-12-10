@@ -10,7 +10,7 @@ $(document).ready(function() {
 	});
 	
 	$('.edit-ing').click(function() {
-		parameters = "http://localhost:8080/cruel-client/pages/Pessoa?action=edit&id=";
+		parameters = "http://localhost:8080/cruel-client/pages/Ingrediente?action=edit&id=";
 		
 		tr = $(this).parent().parent(); //5
 		td = $(tr).children().eq(0);
@@ -32,7 +32,7 @@ $(document).ready(function() {
 	}
 	
 	$('.delete-ing').click(function() {
-		parameters = 'http://localhost:8080/cruel-client/pages/Pessoa?action=delete&id=';
+		parameters = 'http://localhost:8080/cruel-client/pages/Ingrediente?action=delete&id=';
 		
 		id = $(this).parent().parent().children().eq(0).text();
 		nome = $(this).parent().parent().children().eq(1).text();
