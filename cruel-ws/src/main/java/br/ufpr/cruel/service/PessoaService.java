@@ -80,6 +80,17 @@ public class PessoaService {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/cpf-email")
+	public List<Pessoa> findByCpfOrEmail(@QueryParam("query") String query, @QueryParam("tipoPessoa") String tipoPessoa) {
+		dao.openCurrentSession();
+		List<br.ufpr.cruel.domain.Pessoa> result = dao.findByCpfOrEmail("%"+query+"%", "%"+query+"%", tipoPessoa);
+		dao.closeCurrentSession();
+		
+		return transformer.transformToModel( result );
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/crn/{crn}")
 	public List<Pessoa> findByCrn(@PathParam("crn") String crn) {
 		dao.openCurrentSession();

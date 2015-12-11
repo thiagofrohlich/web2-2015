@@ -121,6 +121,18 @@ public class Atendente extends HttpServlet {
 			rd.forward(request, response);
 		}
 		
+		if(action.equals("search")) {
+			Client client = ClientBuilder.newClient();
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/cpf-email?query="+ request.getParameter("query") + "&tipoPessoa=ATENDENTE")
+					.request(MediaType.APPLICATION_JSON)
+					.get(ArrayList.class);
+			request.setAttribute("listaAtendente", listaPessoa);
+			
+			RequestDispatcher rd = getServletContext().
+					getRequestDispatcher("/pages/manterAtendentes.jsp");
+			rd.forward(request, response);
+		}
+		
 	}
 
 }

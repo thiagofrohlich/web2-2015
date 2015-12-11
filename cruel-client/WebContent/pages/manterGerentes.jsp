@@ -62,15 +62,14 @@
                         
 				            <div class="row">
 				                <div class="col-lg-6">
-					                <form role="form">
+					                <form role="form" action="Gerente?action=search" method="POST">
 					                    <div class="input-group custom-search-form">
-					                        <input name="q" type="text" class="form-control" placeholder="Pesquise..."/>
-					                        <!-- <input type="text" class="form-control" placeholder="Search..."> -->
-					                        <span class="input-group-btn">
-				                                <button class="btn btn-default" type="button">
-				                                    <i class="fa fa-search"></i>
-				                                </button>
-				                            </span>
+						                        <input name="query" type="text" class="form-control" placeholder="Pesquise..."/>
+						                        <span class="input-group-btn">
+					                                <button class="btn btn-default" type="submit">
+					                                    <i class="fa fa-search"></i>
+					                                </button>
+					                            </span>
 					                    </div>
 					                </form>
 					            </div>

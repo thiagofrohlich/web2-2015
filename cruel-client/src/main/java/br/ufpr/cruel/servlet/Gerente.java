@@ -120,6 +120,18 @@ public class Gerente extends HttpServlet {
 					getRequestDispatcher("/pages/manterGerentes.jsp");
 			rd.forward(request, response);
 		}
+		
+		if(action.equals("search")) {
+			Client client = ClientBuilder.newClient();
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/cpf-email?query="+ request.getParameter("query") + "&tipoPessoa=GERENTE")
+					.request(MediaType.APPLICATION_JSON)
+					.get(ArrayList.class);
+			request.setAttribute("listaGerente", listaPessoa);
+			
+			RequestDispatcher rd = getServletContext().
+					getRequestDispatcher("/pages/manterGerentes.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 }
