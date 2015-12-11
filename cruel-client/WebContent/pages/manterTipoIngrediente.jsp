@@ -45,7 +45,7 @@
 	        <div id="page-wrapper">
 	            <div class="row">
 	                <div class="col-lg-12">
-	                    <h1 class="page-header">Atendentes</h1>
+	                    <h1 class="page-header">Tipos de Ingrediente</h1>
 	                </div>
 	                <!-- /.col-lg-12 -->
 	            </div>
@@ -98,7 +98,7 @@
 	                            <div class="row">
 	                                <div class="col-lg-6">
 	                                    <form role="form" action="TipoIngrediente?action=salva" method="post">
-	                                    <input type="hidden" value="${ing.id}">
+	                                    <input type="hidden" name="id" value="${ing.id}">
 	                                        <div class="form-group">
 	                                            <label class="control-label" for="nome">Nome</label>
 	                                            <input id="nome" name="nome" class="form-control no-blank" value="${ing.nome}"/>
