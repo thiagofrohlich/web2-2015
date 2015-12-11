@@ -105,12 +105,17 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form role="form" action="Ingrediente?action=salva" method="post">
-                                    <input type="hidden" value="${ingrediente.id}">
+                                    <input type="hidden" name="id" value="${ingrediente.id}">
                                         <div class="form-group">
                                             <label class="control-label" for="tipo">Tipo</label>
                                             <select class="form-control" id="tipo" name="tipo" >
 												<c:forEach var="lstTipo" items="${tipo}">
-													<option>${lstTipo.id}-${lstTipo.nome}</option>
+													<c:if test="${lstTipo.id == ingrediente.tipoIngrediente.id}" >
+														<option selected="selected">${lstTipo.id}-${lstTipo.nome}</option>
+													</c:if>
+													<c:if test="${lstTipo.id != ingrediente.tipoIngrediente.id}" >
+														<option>${lstTipo.id}-${lstTipo.nome}</option>
+													</c:if>
 												</c:forEach>
 											</select>
                                         </div>
