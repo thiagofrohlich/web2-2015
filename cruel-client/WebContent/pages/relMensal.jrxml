@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relMensal" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d5a80d4a-cee7-490e-8d8f-f8960705c3e5">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="mes" class="java.lang.String"/>
+	<parameter name="ano" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Rodrigo\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dataini" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="datafim" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select data ,
+	case to_char(data,'d') when '1' then 'DOMINGO'
+		when '2' then 'SEGUNDA'
+		when '3' then 'TERÇA'
+		when '4' then 'QUARTA'
+		when '5' then 'QUINTA'
+		when '6' then 'SEXTA'
+		when '7' then 'SABADO'
+	end,
+	sum(valor) as valor
+ from atendimento where data between $P{dataini} and $P{datafim} group by data;]]>
+	</queryString>
+	<field name="data" class="java.sql.Date"/>
+	<field name="case" class="java.lang.String"/>
+	<field name="valor" class="java.math.BigDecimal"/>
+	<title>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="183" height="50" uuid="dbef0367-8a94-4f20-a137-5bd4abf9f5b6"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Relatorio Mensal]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="61" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="21" width="100" height="20" uuid="f936371e-4679-4f5f-a71f-63555577fcc5"/>
+				<textFieldExpression><![CDATA[$P{mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="21" width="100" height="20" uuid="e45ee60f-76ad-4fba-9186-8a9783e65a57"/>
+				<textFieldExpression><![CDATA[$P{ano}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="396" y="41" width="59" height="20" uuid="9945eb69-76c5-4a59-a230-ca0699a6a5ca"/>
+				<text><![CDATA[Gerado em:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="455" y="41" width="100" height="20" uuid="0740c37b-6bce-4d4d-971c-08e1e2bd22fa"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="1" width="100" height="20" uuid="fa3792aa-6a12-4224-9550-48f2fbc3afb9"/>
+				<text><![CDATA[data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="1" width="100" height="20" uuid="4d08ba2c-a3a9-440b-8c18-8d132f4f3f2e"/>
+				<text><![CDATA[valor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="4dddee53-3e21-4ca2-9c0f-2fb5afe34378"/>
+				<textFieldExpression><![CDATA[$F{case}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="499231bd-4121-48e6-b1ff-82b510ae7fae"/>
+				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="218" y="0" width="100" height="20" uuid="ad64c0f4-5d7b-4148-8670-80058955ccd8"/>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<subreport isUsingCache="false">
+				<reportElement x="415" y="0" width="124" height="32" uuid="5f5c8921-5d6e-43b8-bca6-7f0617da9c96"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes">
+					<subreportParameterExpression><![CDATA[$P{mes}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataini">
+					<subreportParameterExpression><![CDATA[$P{dataini}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="datafim">
+					<subreportParameterExpression><![CDATA[$P{datafim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}  + "relMensal_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="318" y="0" width="97" height="20" uuid="bed9bd39-0840-407a-9999-d70b120e6ccb"/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

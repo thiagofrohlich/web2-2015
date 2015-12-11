@@ -7,6 +7,9 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -29,26 +32,46 @@ public class Relatorio extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String action = request.getParameter("action");
+		if(action.equals("mensal")){
 			Connection con = null;
+			Integer mes = Integer.parseInt(request.getParameter("mes"));
+			Integer ano = Integer.parseInt(request.getParameter("ano"));
+			SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
+			String ini = "01"+mes+ano;
+			String fim = montaData(mes)+mes+ano;
+			Date dataini = null;
+			Date datafim = null;
 			try {
-				// Conexão com o banco
+				dataini = dateFormat.parse(ini);
+				datafim = dateFormat.parse(fim);
+			} catch (ParseException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				// Conexï¿½o com o banco
 				Class.forName("org.postgresql.Driver");
 				con = DriverManager.getConnection(
 						"jdbc:postgresql://localhost:5432/web2",
 						"postgres", "postgres");
-				// Caminho físico do relatório compilado
+				// Caminho fï¿½sico do relatï¿½rio compilado
 				String jasper = request.getContextPath() +
-						"/relMensal.jasper";
+						"/pages/relMensal.jasper";
 				// Host onde o servlet esta executando
 				String host = "http://" + request.getServerName() +
 						":" + request.getServerPort();
-				// URL para acesso ao relatório
+				// URL para acesso ao relatï¿½rio
 				URL jasperURL = new URL(host + jasper);
 				HashMap params = new HashMap();
+				params.put("mes", retornaMes(mes));
+				params.put("ano", ano.toString());
+				params.put("dataini", dataini);
+				params.put("datafim", datafim);
+				
 				byte[] bytes = JasperRunManager.runReportToPdf(
 						jasperURL.openStream(), params, con);
 				if (bytes != null) {
-					// A página será mostrada em PDF
+					// A pï¿½gina serï¿½ mostrada em PDF
 					response.setContentType("application/pdf");
 					// Envia o PDF para o Cliente
 					OutputStream ops = null;
@@ -60,35 +83,77 @@ public class Relatorio extends HttpServlet {
 				e.printStackTrace();
 			}
 			catch(SQLException e) {
-				// erro de SQL
-				response.setContentType("text/html;charset=UTF-8");
-				PrintWriter out = response.getWriter();
-				out.println("<html><head>");
-				out.println("<title>Servlet GeradorRelatorio</title>");
-				out.println("</head><body>");
-				out.println("<h1>Erro de SQL (" + e.getMessage() +
-						") no Servlet GeradorRelatorio at " +
-						request.getContextPath () + "</h1>");
-				out.println("</body></html>");
-				out.flush();
+				e.printStackTrace();
 			}
 			catch(JRException e) {
-				// erro de Jasper
-				response.setContentType("text/html;charset=UTF-8");
-				PrintWriter out = response.getWriter();
-				out.println("<html><head>");
-				out.println("<title>Servlet GeradorRelatorio</title>");
-				out.println("</head><body>");
-				out.println("<h1>Erro de Jasper (" + e.getMessage() +
-						") no Servlet GeradorRelatorio at " +
-						request.getContextPath () + "</h1>");
-				out.println("</body></html>");
-				out.flush();
+				e.printStackTrace();
 			}
 			finally {
 				if (con!=null)
 					try { con.close(); } catch(Exception e) {}
 			}
+		}
+		
+		if(action.equals("anual")){
+			Connection con = null;
+			Integer ano = Integer.parseInt(request.getParameter("ano"));
+			SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
+			String ini = "01"+01+ano;
+			String fim = "3112"+ano;
+			Date dataini = null;
+			Date datafim = null;
+			try {
+				dataini = dateFormat.parse(ini);
+				datafim = dateFormat.parse(fim);
+			} catch (ParseException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				// Conexï¿½o com o banco
+				Class.forName("org.postgresql.Driver");
+				con = DriverManager.getConnection(
+						"jdbc:postgresql://localhost:5432/web2",
+						"postgres", "postgres");
+				// Caminho fï¿½sico do relatï¿½rio compilado
+				String jasper = request.getContextPath() +
+						"/pages/relAnual.jasper";
+				// Host onde o servlet esta executando
+				String host = "http://" + request.getServerName() +
+						":" + request.getServerPort();
+				// URL para acesso ao relatï¿½rio
+				URL jasperURL = new URL(host + jasper);
+				HashMap params = new HashMap();
+				params.put("ano", ano.toString());
+				params.put("dataini", dataini);
+				params.put("datafim", datafim);
+				
+				byte[] bytes = JasperRunManager.runReportToPdf(
+						jasperURL.openStream(), params, con);
+				if (bytes != null) {
+					// A pï¿½gina serï¿½ mostrada em PDF
+					response.setContentType("application/pdf");
+					// Envia o PDF para o Cliente
+					OutputStream ops = null;
+					ops = response.getOutputStream();
+					ops.write(bytes);
+				}
+			}
+			catch(ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+			catch(JRException e) {
+				e.printStackTrace();
+			}
+			finally {
+				if (con!=null)
+					try { con.close(); } catch(Exception e) {}
+			}
+		}
+		
+		
 		
 	}
 
@@ -97,6 +162,42 @@ public class Relatorio extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+	}
+	
+	private String montaData(Integer mes){
+		switch (mes) {
+		case 1:
+		case 3:
+		case 5:
+		case 6:
+		case 8:
+		case 10:
+		case 12:
+			return "31";
+		case 2:
+			return "28";
+
+		default:
+			return "30";
+		}
+	}
+	
+	private String retornaMes(Integer mes){
+		switch (mes) {
+		case 1: return "Janeiro";
+		case 2: return "Fevereiro";
+		case 3: return "MarÃ§o";
+		case 4: return "Abril";
+		case 5: return "Maio";
+		case 6: return "Junho";
+		case 7: return "Julho";
+		case 8: return "Agosto";
+		case 9: return "Setembro";
+		case 10: return "Outubro";
+		case 11: return "Novembro";
+		case 12: return "Desembro";
+	}
+		return null;
 	}
 
 }
