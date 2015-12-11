@@ -56,7 +56,7 @@ public class Login extends HttpServlet {
 		resp.addCookie(cUsuarioId);
 		resp.addCookie(cTipoUsuario);
 		
-		resp.sendRedirect("inicialCliente.jsp");
+		resp.sendRedirect("/cruel-client/index.jsp");
 	}
 
 	private void forwardToErrorPage(HttpServletRequest req, HttpServletResponse resp, String message) throws ServletException, IOException {

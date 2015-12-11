@@ -48,7 +48,7 @@ public class Atendimento extends HttpServlet {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			br.ufpr.cruel.model.Atendimento atendimento = new br.ufpr.cruel.model.Atendimento();
 			
-			if(request.getParameter("id") != null){
+			if(request.getParameter("id") != null && !request.getParameter("id").equals("")){
 				atendimento.setId(Integer.parseInt(request.getParameter("id")));
 			}
 			Client client = ClientBuilder.newClient();

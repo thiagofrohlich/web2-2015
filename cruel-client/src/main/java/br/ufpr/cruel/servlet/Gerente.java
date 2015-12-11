@@ -50,9 +50,9 @@ public class Gerente extends HttpServlet {
 			gerente.setTelefone(request.getParameter("telefone"));
 			gerente.setSenha(request.getParameter("senha"));
 			gerente.setEndereco(request.getParameter("endereco"));
-			gerente.setTipoPessoa("gerente");
+			gerente.setTipoPessoa("GERENTE");
 			
-			if(request.getParameter("id") != null){
+			if(request.getParameter("id") != null && !request.getParameter("id").equals("")){
 				gerente.setId(Integer.parseInt(request.getParameter("id")));
 			}
 			
@@ -68,13 +68,13 @@ public class Gerente extends HttpServlet {
 			}
 			
 			
-			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/tipo/gerente")
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/tipo/GERENTE")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
 			request.setAttribute("listaGerente", listaPessoa);
 			
 			RequestDispatcher rd = getServletContext().
-					getRequestDispatcher("/pages/manterGerente.jsp");
+					getRequestDispatcher("/pages/manterGerentes.jsp");
 			rd.forward(request, response);
 		}
 		
@@ -99,7 +99,7 @@ public class Gerente extends HttpServlet {
 			.request(MediaType.APPLICATION_JSON)
 			.delete(Pessoa.class);
 			
-			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/tipo/gerente")
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/tipo/GERENTE")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
 			request.setAttribute("listaGerente", listaPessoa);
@@ -111,7 +111,19 @@ public class Gerente extends HttpServlet {
 		
 		if(action.equals("inicio")){
 			Client client = ClientBuilder.newClient();
-			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/tipo/gerente")
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/tipo/GERENTE")
+					.request(MediaType.APPLICATION_JSON)
+					.get(ArrayList.class);
+			request.setAttribute("listaGerente", listaPessoa);
+			
+			RequestDispatcher rd = getServletContext().
+					getRequestDispatcher("/pages/manterGerentes.jsp");
+			rd.forward(request, response);
+		}
+		
+		if(action.equals("search")) {
+			Client client = ClientBuilder.newClient();
+			listaPessoa =  (List<Pessoa>) client.target("http://localhost:8080/cruel-ws/Pessoa/cpf-email?query="+ request.getParameter("query") + "&tipoPessoa=GERENTE")
 					.request(MediaType.APPLICATION_JSON)
 					.get(ArrayList.class);
 			request.setAttribute("listaGerente", listaPessoa);

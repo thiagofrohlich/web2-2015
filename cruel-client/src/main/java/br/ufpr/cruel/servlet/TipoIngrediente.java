@@ -2,7 +2,6 @@ package br.ufpr.cruel.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -47,7 +46,7 @@ public class TipoIngrediente extends HttpServlet {
 			br.ufpr.cruel.model.TipoIngrediente tipo = new br.ufpr.cruel.model.TipoIngrediente();
 			tipo.setNome(request.getParameter("nome"));
 			
-			if(request.getParameter("id") != null){
+			if(request.getParameter("id") != null && !request.getParameter("id").equals("")){
 				tipo.setId(Integer.parseInt(request.getParameter("id")));
 			}
 			

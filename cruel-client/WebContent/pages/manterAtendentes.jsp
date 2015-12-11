@@ -62,15 +62,14 @@
                         
 				            <div class="row">
 				                <div class="col-lg-6">
-					                <form role="form">
+					                <form role="form" action="Atendente?action=search" method="POST">
 					                    <div class="input-group custom-search-form">
-					                        <input name="q" type="text" class="form-control" placeholder="Pesquise..."/>
-					                        <!-- <input type="text" class="form-control" placeholder="Search..."> -->
-					                        <span class="input-group-btn">
-				                                <button class="btn btn-default" type="button">
-				                                    <i class="fa fa-search"></i>
-				                                </button>
-				                            </span>
+						                        <input name="query" type="text" class="form-control" placeholder="Pesquise..."/>
+						                        <span class="input-group-btn">
+					                                <button class="btn btn-default" type="submit">
+					                                    <i class="fa fa-search"></i>
+					                                </button>
+					                            </span>
 					                    </div>
 					                </form>
 					            </div>
@@ -125,7 +124,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form role="form" action="Atendente?action=salva" method="post">
-                                    <input type="hidden" value="${atendete.id}">
+                                    <input type="hidden" name="id" value="${atendente.id}">
                                         <div class="form-group">
                                             <label class="control-label" for="nome">Nome</label>
                                             <input id="nome" name="nome" class="form-control no-blank" value="${atendente.nome}"/>
@@ -138,12 +137,12 @@
                                         <div class="form-group">
                                             <label class="control-label" for="endereco">Endereço</label>
                                             <input id="endereco" name="endereco" class="form-control no-blank" value="${atendente.endereco}">
-                                            <p class="help-block">EndereÃ§o completo.</p>
+                                            <p class="help-block">Endereço completo.</p>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="telefone">Telefone</label>
                                             <input id="telefone" name="telefone" class="form-control no-blank only-numeric" value="${atendente.telefone}">
-                                            <p class="help-block">Apenas nÃºmeros. Ex.: 33123456</p>
+                                            <p class="help-block">Apenas números. Ex.: 33123456</p>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="email">Email</label>

@@ -32,6 +32,18 @@ public class PessoaDao extends GenericDao<Pessoa, Integer> {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<Pessoa> findByCpfOrEmail(String cpf, String email, String tipoPessoa) {
+		String query = "select p from Pessoa p "
+				+ "where (p.cpf like :cpf "
+				+ "or p.email like :email) "
+				+ "and p.tipoPessoa = :tipoPessoa ";
+		return (List<Pessoa>) getCurrentSession().createQuery(query)
+				.setParameter("cpf", cpf)
+				.setParameter("email", email)
+				.setParameter("tipoPessoa", tipoPessoa).list();
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<Pessoa> findByCrn(String crn) {
 		String query = "select p from Pessoa p "
 				+ "where p.crn like :crn";

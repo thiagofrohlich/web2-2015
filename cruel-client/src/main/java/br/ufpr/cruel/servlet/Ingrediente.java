@@ -52,7 +52,7 @@ public class Ingrediente extends HttpServlet {
 					.request(MediaType.APPLICATION_JSON)
 					.get(br.ufpr.cruel.model.TipoIngrediente.class));
 			
-			if(request.getParameter("id") != null){
+			if(request.getParameter("id") != null && !request.getParameter("id").equals("")){
 				ingrediente.setId(Integer.parseInt(request.getParameter("id")));
 			}
 			
