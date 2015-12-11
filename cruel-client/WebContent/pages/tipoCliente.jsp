@@ -59,22 +59,6 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                         
-				            <div class="row">
-				                <div class="col-lg-6">
-					                <form role="form">
-					                    <div class="input-group custom-search-form">
-					                        <input name="q" type="text" class="form-control" placeholder="Pesquise..."/>
-					                        <!-- <input type="text" class="form-control" placeholder="Search..."> -->
-					                        <span class="input-group-btn">
-				                                <button class="btn btn-default" type="button">
-				                                    <i class="fa fa-search"></i>
-				                                </button>
-				                            </span>
-					                    </div>
-					                </form>
-					            </div>
-				            </div>
-                        
                             <div class="dataTable_wrapper">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-examples">
                                     <thead>
